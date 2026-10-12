@@ -7,324 +7,185 @@
 <meta name="description" content="Илья Шпота — режиссёр рекламы, музыкальных клипов и кино. Москва.">
 <meta property="og:title" content="Илья Шпота — режиссёр">
 <meta property="og:description" content="Реклама, музыкальные клипы, кино. Москва.">
+<meta property="og:image" content="https://i.vimeocdn.com/video/2052138250-9a0863c90ba3b2a4ad092cd62411937467bed2216bbbde7b345ceea9af4265c7-d_960">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@300;500;700;800&family=Onest:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap&subset=cyrillic,latin" rel="stylesheet">
 <style>
 /* ============================================================
    ТОКЕНЫ
    ============================================================ */
 :root{
-  --ink:#08090B;          /* база */
-  --graphite:#101318;     /* панели */
-  --line:rgba(143,196,232,.16);
-  --line-strong:rgba(143,196,232,.42);
-  --fog:#8C97A3;          /* вторичный текст */
-  --paper:#F2F5F8;        /* основной текст */
-  --glass:#8FC4E8;        /* фирменный акцент */
-
-  --f-display:'Alumni Sans',Impact,sans-serif;
-  --f-body:'Onest',system-ui,sans-serif;
-  --f-mono:'JetBrains Mono',ui-monospace,monospace;
-
-  --pad:clamp(18px,4.5vw,64px);
-  --rail:56px;
+  --bg:#fff; --ink:#000; --mute:#858585; --line:#e6e6e6;
+  --accent:#8FC4E8;
+  --font:'Jost','Futura','Century Gothic','Trebuchet MS',sans-serif;
+  --head:100px;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{
-  background:var(--ink);color:var(--paper);
-  font-family:var(--f-body);font-weight:300;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-img{display:block;max-width:100%;}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 a{color:inherit;text-decoration:none;}
-button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
-:focus-visible{outline:2px solid var(--glass);outline-offset:3px;}
-
-.mono{font-family:var(--f-mono);font-weight:300;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--glass);}
-
-/* ============================================================
-   ВЕРХНЯЯ ПАНЕЛЬ
-   ============================================================ */
-.bar{
-  position:fixed;top:0;left:0;right:0;z-index:60;
-  display:flex;align-items:center;gap:16px;
-  padding:0 var(--pad);height:52px;
-  background:rgba(8,9,11,.72);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line);
-}
-.bar .tc{font-family:var(--f-mono);font-size:11px;font-weight:400;letter-spacing:.1em;color:var(--glass);font-variant-numeric:tabular-nums;}
-.bar .nm{font-family:var(--f-display);font-weight:700;font-size:21px;letter-spacing:.06em;text-transform:uppercase;line-height:1;margin-left:6px;}
-.bar .sp{flex:1;}
-.bar nav{display:flex;gap:22px;}
-.bar nav a{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--fog);transition:color .25s;}
-.bar nav a:hover{color:var(--paper);}
-.lang{display:flex;gap:2px;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;}
-.lang button{padding:4px 6px;color:var(--fog);transition:color .2s;}
-.lang button[aria-pressed="true"]{color:var(--ink);background:var(--glass);}
-@media(max-width:820px){.bar nav{display:none;}}
-
-/* прогресс-хейрлайн */
-.prog{position:fixed;top:52px;left:0;height:1px;background:var(--glass);z-index:61;width:0;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+img{display:block;max-width:100%;}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
 
 /* ============================================================
-   ГЕРОЙ
+   ШАПКА (как у образца: белая, фиксированная, меню справа)
    ============================================================ */
-.hero{
-  position:relative;min-height:100svh;
-  display:flex;flex-direction:column;justify-content:flex-end;
-  padding:96px var(--pad) clamp(34px,7vh,72px);
-  overflow:hidden;
-}
-.hero-bg{position:absolute;inset:0;z-index:0;}
-.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.34;filter:grayscale(.55) contrast(1.05);transform:scale(1.06);animation:drift 26s ease-in-out infinite alternate;}
-@keyframes drift{to{transform:scale(1.14) translate3d(-1.5%,-1%,0);}}
-.hero-bg::after{content:'';position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(8,9,11,.86) 0%,rgba(8,9,11,.34) 42%,rgba(8,9,11,.97) 100%);}
+.head{position:fixed;inset:0 0 auto 0;z-index:40;height:var(--head);background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px;}
+.logo{font-size:30px;font-weight:600;letter-spacing:2px;text-transform:uppercase;line-height:1;white-space:nowrap;}
+.menu{display:flex;align-items:center;list-style:none;}
+.menu li{padding:0 15px;}
+.menu li:last-child{padding-right:0;}
+.menu a,.menu button{position:relative;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--mute);transition:color .3s ease-in-out;}
+.menu a::after,.menu button.lk::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--ink);opacity:0;transition:opacity .3s,bottom .3s;}
+@media(hover:hover){.menu a:hover,.menu button:hover{color:var(--ink);}.menu a:hover::after,.menu button.lk:hover::after{opacity:1;bottom:-3px;}}
+.menu a.on{color:var(--ink);font-weight:600;}
+.lang{display:flex;gap:6px;margin-left:10px;}
+.lang button{font-size:12px;letter-spacing:2px;color:var(--mute);}
+.lang button[aria-pressed="true"]{color:var(--ink);font-weight:600;}
+.burger{display:none;width:34px;height:34px;position:relative;}
+.burger i{position:absolute;left:5px;right:5px;height:1px;background:var(--ink);transition:.3s;}
+.burger i:nth-child(1){top:11px}.burger i:nth-child(2){top:17px}.burger i:nth-child(3){top:23px}
+.burger.x i:nth-child(1){top:17px;transform:rotate(45deg)}.burger.x i:nth-child(2){opacity:0}.burger.x i:nth-child(3){top:17px;transform:rotate(-45deg)}
 
-/* рамка кадра */
-.frame{position:absolute;inset:calc(52px + var(--pad)/1.4) var(--pad) var(--pad);z-index:1;pointer-events:none;}
-.frame i{position:absolute;width:26px;height:26px;border:1px solid var(--line-strong);opacity:0;animation:mark .7s cubic-bezier(.2,.7,.3,1) forwards;}
-.frame i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0;animation-delay:.15s;}
-.frame i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0;animation-delay:.22s;}
-.frame i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0;animation-delay:.29s;}
-.frame i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0;animation-delay:.36s;}
-@keyframes mark{from{opacity:0;transform:scale(.4);}to{opacity:1;transform:scale(1);}}
-
-.hero-in{position:relative;z-index:2;}
-.hero .eyebrow{margin-bottom:clamp(14px,2.4vh,26px);opacity:0;animation:rise .8s .45s cubic-bezier(.2,.7,.3,1) forwards;}
-.hero h1{
-  font-family:var(--f-display);font-weight:800;
-  font-size:clamp(72px,20vw,230px);line-height:.8;
-  letter-spacing:-.012em;text-transform:uppercase;
-}
-.hero h1 span{display:block;overflow:hidden;}
-.hero h1 span b{display:block;font-weight:800;opacity:0;transform:translateY(105%);animation:rise .95s cubic-bezier(.16,.9,.24,1) forwards;}
-.hero h1 span:nth-child(1) b{animation-delay:.5s;}
-.hero h1 span:nth-child(2) b{animation-delay:.6s;color:var(--glass);}
-@keyframes rise{to{opacity:1;transform:translateY(0);}}
-
-.hero-foot{
-  margin-top:clamp(20px,3.6vh,42px);
-  display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:22px;
-  opacity:0;animation:rise .9s .82s cubic-bezier(.2,.7,.3,1) forwards;
-}
-.roles{font-size:clamp(13px,1.35vw,17px);font-weight:300;color:var(--paper);letter-spacing:.01em;max-width:34ch;line-height:1.5;}
-.roles em{font-style:normal;color:var(--fog);}
-
-.play{
-  display:inline-flex;align-items:center;gap:14px;
-  padding:13px 24px 13px 16px;border:1px solid var(--line-strong);
-  transition:background .3s,border-color .3s,color .3s;
-}
-.play:hover{background:var(--glass);border-color:var(--glass);color:var(--ink);}
-.play .tri{width:0;height:0;border-left:9px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent;}
-.play span{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;}
+main{padding-top:var(--head);min-height:100vh;opacity:1;transition:opacity .2s ease-in-out;}
+main.fade{opacity:0;}
 
 /* ============================================================
-   СЕКЦИИ
+   ГЛАВНАЯ: имя + плитки
    ============================================================ */
-section{padding:clamp(72px,11vh,150px) var(--pad);}
-.head{display:flex;align-items:baseline;gap:18px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:clamp(30px,5vh,54px);}
-.head h2{font-family:var(--f-display);font-weight:700;font-size:clamp(34px,6.2vw,84px);line-height:.86;letter-spacing:.01em;text-transform:uppercase;}
-.head .mono{margin-left:auto;white-space:nowrap;}
+.intro{padding:56px 20px 44px;text-align:center;}
+.intro h1{font-size:clamp(44px,9.5vw,132px);font-weight:300;letter-spacing:.14em;line-height:1;text-transform:uppercase;padding-left:.14em;}
+.intro h1 b{font-weight:600;}
+.intro p{margin-top:18px;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--mute);padding-left:.32em;}
 
-/* фильтр */
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(22px,3.4vh,38px);}
-.filters button{
-  font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
-  padding:9px 15px;border:1px solid var(--line);color:var(--fog);
-  transition:color .25s,border-color .25s,background .25s;
+/* плитки — встык, 2 колонки, 0.56 как в образце */
+.tiles{display:grid;grid-template-columns:1fr 1fr;}
+.tile{position:relative;display:block;width:100%;aspect-ratio:1/.56;overflow:hidden;background:#111;cursor:pointer;text-align:center;}
+.tile .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.2,.7,.3,1);}
+.tile::before{content:'';position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.3);transition:background .5s;}
+.tile .tt{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:#fff;font-size:20px;line-height:1;letter-spacing:.04em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s;}
+.tile .tt small{display:block;margin-bottom:10px;font-size:12px;letter-spacing:.24em;font-weight:300;opacity:.85;}
+.tile .tt em{display:block;margin-top:12px;font-style:normal;font-size:11px;letter-spacing:.24em;font-weight:300;opacity:.8;}
+@media(hover:hover){
+  .tile:hover .bg,.tile:focus-visible .bg{transform:scale(1.06);}
+  .tile:hover::before,.tile:focus-visible::before{background:rgba(0,0,0,.5);}
+  .tile:hover .tt,.tile:focus-visible .tt{opacity:1;transform:none;}
 }
-.filters button:hover{color:var(--paper);border-color:var(--line-strong);}
-.filters button[aria-pressed="true"]{color:var(--ink);background:var(--glass);border-color:var(--glass);}
+@media(hover:none){.tile .tt{opacity:1;transform:none;}.tile::before{background:rgba(0,0,0,.38);}}
+.tile.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s;}
+.tile.rv.in{opacity:1;transform:none;}
 
-/* сетка работ */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:clamp(12px,1.6vw,22px);}
-.tile{position:relative;display:block;text-align:left;width:100%;opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s;}
-.tile.in{opacity:1;transform:none;}
-.tile.hide{display:none;}
-.shot{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--graphite);}
-.shot img{width:100%;height:100%;object-fit:cover;filter:grayscale(.42) brightness(.82);transition:filter .55s,transform .9s cubic-bezier(.2,.7,.3,1);}
-.tile:hover .shot img,.tile:focus-visible .shot img{filter:none;transform:scale(1.045);}
-/* метки кадрирования */
-.shot u{position:absolute;width:14px;height:14px;border:1px solid var(--paper);opacity:0;transition:opacity .35s,margin .45s cubic-bezier(.2,.7,.3,1);margin:14px;}
-.shot u:nth-of-type(1){top:0;left:0;border-right:0;border-bottom:0;}
-.shot u:nth-of-type(2){top:0;right:0;border-left:0;border-bottom:0;}
-.shot u:nth-of-type(3){bottom:0;left:0;border-right:0;border-top:0;}
-.shot u:nth-of-type(4){bottom:0;right:0;border-left:0;border-top:0;}
-.tile:hover .shot u,.tile:focus-visible .shot u{opacity:.9;margin:9px;}
-.cap{display:flex;align-items:baseline;gap:10px;padding:11px 1px 0;border-top:1px solid var(--line);margin-top:9px;}
-.cap .t{font-size:14px;font-weight:400;color:var(--paper);}
-.cap .c{margin-left:auto;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--fog);white-space:nowrap;}
+.page-title{padding:44px 20px 36px;text-align:center;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--mute);}
+.empty{padding:120px 20px;text-align:center;color:var(--mute);letter-spacing:.2em;font-size:12px;text-transform:uppercase;}
 
 /* ============================================================
-   О РЕЖИССЁРЕ — монтажный лист
+   О РЕЖИССЁРЕ
    ============================================================ */
-.about{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(26px,5vw,90px);align-items:start;}
-@media(max-width:900px){.about{grid-template-columns:1fr;}}
-.lede{font-family:var(--f-display);font-weight:300;font-size:clamp(28px,4.4vw,54px);line-height:1.03;letter-spacing:.005em;color:var(--paper);}
-.lede b{font-weight:700;color:var(--glass);}
-.beats{display:flex;flex-direction:column;}
-.beat{display:grid;grid-template-columns:var(--rail) 1fr;gap:16px;padding:20px 0;border-top:1px solid var(--line);}
-.beat:last-child{border-bottom:1px solid var(--line);}
-.beat p{font-size:15px;line-height:1.68;color:#C6CDD5;}
-.beat p strong{font-weight:500;color:var(--paper);}
+.about{max-width:1100px;margin:0 auto;padding:60px 20px 90px;display:grid;grid-template-columns:5fr 4fr;gap:clamp(30px,6vw,90px);align-items:start;}
+.about.nophoto{grid-template-columns:minmax(0,560px);justify-content:center;}
+.about .ph{aspect-ratio:4/5;background:#f2f2f2 center/cover no-repeat;}
+.about .tx p{font-size:15px;line-height:22px;margin-bottom:18px;}
+.about .tx p strong{font-weight:600;}
+.about .lead{font-size:22px !important;line-height:28px !important;font-weight:300;margin-bottom:26px !important;}
+.about .tx h3{margin:34px 0 14px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;}
+.cont{list-style:none;}
+.cont li{display:flex;gap:16px;padding:9px 0;border-top:1px solid var(--line);font-size:15px;}
+.cont li:last-child{border-bottom:1px solid var(--line);}
+.cont span{width:96px;flex:none;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);padding-top:3px;}
+.cont a{transition:color .3s;}
+.cont a:hover{color:var(--mute);}
 
 /* ============================================================
-   КОНТАКТ
+   ПОДВАЛ
    ============================================================ */
-.contact{padding-bottom:clamp(48px,7vh,90px);}
-.mail{display:inline-block;font-family:var(--f-display);font-weight:700;font-size:clamp(34px,8.4vw,104px);line-height:.92;letter-spacing:-.005em;word-break:break-word;transition:color .3s;}
-.mail:hover{color:var(--glass);}
-.chan{display:flex;flex-wrap:wrap;gap:10px 34px;margin-top:clamp(24px,4vh,46px);padding-top:22px;border-top:1px solid var(--line);}
-.chan a{display:flex;flex-direction:column;gap:5px;}
-.chan .k{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--fog);}
-.chan .v{font-size:15px;font-weight:400;transition:color .25s;}
-.chan a:hover .v{color:var(--glass);}
-
-footer{padding:20px var(--pad) 26px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:10px 20px;justify-content:space-between;}
-footer span{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--fog);}
+footer{height:50px;display:flex;align-items:center;justify-content:center;}
+footer ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;}
+footer li{padding:0 15px;}
+footer a{font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:color .3s;}
+footer a:hover{color:var(--mute);}
 
 /* ============================================================
-   ЛАЙТБОКС
+   ПОПАП С ВИДЕО
    ============================================================ */
-.lb{position:fixed;inset:0;z-index:90;background:rgba(6,7,9,.96);display:none;align-items:center;justify-content:center;padding:var(--pad);}
-.lb.on{display:flex;}
-.lb .wrap{width:100%;max-width:min(1180px,calc((100vh - 340px) * 16 / 9));aspect-ratio:16/9;background:#000;position:relative;}
-.lb iframe{width:100%;height:100%;border:0;}
-.lb{flex-direction:column;gap:16px;}
-.lb .lbcap{width:100%;max-width:min(1180px,calc((100vh - 340px) * 16 / 9));display:flex;flex-direction:column;gap:6px;}
-.lb .lbcap .tt{font-family:var(--f-display);font-weight:700;font-size:clamp(22px,3vw,34px);letter-spacing:.02em;text-transform:uppercase;line-height:1;}
-.lb .lbcap .inf{font-size:13px;line-height:1.6;color:var(--fog);white-space:pre-line;max-height:7.5em;overflow:auto;}
-.lb .none{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px;border:1px solid var(--line);}
-.lb .none p{font-size:14px;color:var(--fog);max-width:38ch;line-height:1.6;}
-.lb .x{position:absolute;top:calc(var(--pad) - 4px);right:var(--pad);font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fog);}
-.lb .x:hover{color:var(--paper);}
+.pop{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.92);display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:60px 24px 24px;}
+.pop.on{display:flex;}
+.pop .x{position:absolute;top:18px;right:22px;width:34px;height:34px;}
+.pop .x i{position:absolute;left:2px;right:2px;top:16px;height:2px;background:#fff;transition:background .3s;}
+.pop .x i:first-child{transform:rotate(45deg)}.pop .x i:last-child{transform:rotate(-45deg)}
+.pop .x:hover i{background:var(--accent);}
+.pop .vid{width:min(1100px,100%,calc((100vh - 230px) * 16 / 9));aspect-ratio:16/9;background:#000;}
+.pop .vid iframe{width:100%;height:100%;border:0;}
+.pop .none{height:100%;display:grid;place-items:center;color:#aaa;font-size:12px;letter-spacing:.2em;text-transform:uppercase;border:1px solid #333;}
+.pop .cap{width:min(1100px,100%,calc((100vh - 230px) * 16 / 9));color:#fff;}
+.pop .cap .m{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);}
+.pop .cap .t{margin-top:6px;font-size:clamp(20px,2.4vw,28px);letter-spacing:.04em;text-transform:uppercase;line-height:1.1;}
+.pop .cap .i{margin-top:8px;font-size:13px;line-height:19px;font-weight:300;color:#bbb;white-space:pre-line;max-height:5.8em;overflow:auto;}
 
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important;}
-  .hero h1 span b,.hero .eyebrow,.hero-foot,.frame i{opacity:1;transform:none;}
-  .tile{opacity:1;transform:none;}
-  html{scroll-behavior:auto;}
+/* ============================================================
+   АДАПТИВ
+   ============================================================ */
+@media(max-width:900px){
+  .about{grid-template-columns:1fr;}
 }
+@media(max-width:820px){
+  :root{--head:70px;}
+  .logo{font-size:22px;}
+  .burger{display:block;}
+  .menu{position:fixed;top:var(--head);left:0;right:0;flex-direction:column;align-items:flex-start;background:#fff;padding:6px 20px 22px;border-bottom:1px solid var(--line);transform:translateY(-8px);opacity:0;pointer-events:none;transition:.3s;}
+  .menu.open{transform:none;opacity:1;pointer-events:auto;}
+  .menu li{padding:12px 0;}
+  .menu a,.menu button{font-size:14px;}
+  .lang{margin:0;padding-top:6px;}
+  .tiles{grid-template-columns:1fr;}
+  .tile{aspect-ratio:1/.56;}
+  .intro{padding:36px 20px 30px;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}.tile.rv{opacity:1;transform:none;}html{scroll-behavior:auto;}}
 </style>
 </head>
 <body>
 
-<!-- ВЕРХНЯЯ ПАНЕЛЬ -->
-<header class="bar">
-  <span class="tc" id="tc">00:00:00:00</span>
-  <span class="nm" data-ru="Шпота" data-en="Shpota">Шпота</span>
-  <span class="sp"></span>
-  <nav>
-    <a href="#work" data-ru="Работы" data-en="Work">Работы</a>
-    <a href="#about" data-ru="О режиссёре" data-en="About">О режиссёре</a>
-    <a href="#contact" data-ru="Контакты" data-en="Contact">Контакты</a>
-  </nav>
-  <div class="lang">
-    <button id="ru" aria-pressed="true">RU</button>
-    <button id="en" aria-pressed="false">EN</button>
-  </div>
+<header class="head">
+  <a class="logo" href="#/" id="logo">Илья Шпота</a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  <ul class="menu" id="menu">
+    <li><a href="#/musicvideos" data-r="musicvideos" data-i="clip"></a></li>
+    <li><a href="#/commercials" data-r="commercials" data-i="ad"></a></li>
+    <li><a href="#/film" data-r="film" data-i="film"></a></li>
+    <li><button class="lk" id="reelBtn" data-i="reel"></button></li>
+    <li><a href="#/about" data-r="about" data-i="about"></a></li>
+    <li class="lang"><button id="ru" aria-pressed="true">RU</button><button id="en" aria-pressed="false">EN</button></li>
+  </ul>
 </header>
-<div class="prog" id="prog"></div>
 
-<!-- ГЕРОЙ -->
-<div class="hero">
-  <div class="hero-bg">
-    <img src="https://i.vimeocdn.com/video/2052138250-9a0863c90ba3b2a4ad092cd62411937467bed2216bbbde7b345ceea9af4265c7-d_640?region=us" alt="">
-  </div>
-  <div class="frame"><i></i><i></i><i></i><i></i></div>
-  <div class="hero-in">
-    <div class="eyebrow mono" data-ru="Режиссёр · Москва" data-en="Director · Moscow">Режиссёр · Москва</div>
-    <h1>
-      <span><b data-ru="Илья" data-en="Ilya">Илья</b></span>
-      <span><b data-ru="Шпота" data-en="Shpota">Шпота</b></span>
-    </h1>
-    <div class="hero-foot">
-      <p class="roles" data-ru="Реклама, музыкальные клипы и кино. Экшн, каскадёрские сцены и VFX <em>— на большом масштабе.</em>" data-en="Commercials, music videos and film. Action, stunts and VFX <em>— at scale.</em>">Реклама, музыкальные клипы и кино. Экшн, каскадёрские сцены и VFX <em>— на большом масштабе.</em></p>
-      <button class="play" data-reel>
-        <span class="tri"></span>
-        <span data-ru="Экшн-шоурил 2025" data-en="Action showreel 2025">Экшн-шоурил 2025</span>
-      </button>
-    </div>
-  </div>
-</div>
+<main id="view"></main>
 
-<!-- РАБОТЫ -->
-<section id="work">
-  <div class="head">
-    <h2 data-ru="Работы" data-en="Work">Работы</h2>
-    <span class="mono" id="count">14 / 14</span>
-  </div>
-  <div class="filters" id="filters"></div>
-  <div class="grid" id="grid"></div>
-</section>
+<footer><ul id="foot"></ul></footer>
 
-<!-- О РЕЖИССЁРЕ -->
-<section id="about">
-  <div class="head">
-    <h2 data-ru="О режиссёре" data-en="About">О режиссёре</h2>
-    <span class="mono" data-ru="Биография" data-en="Biography">Биография</span>
-  </div>
-  <div class="about">
-    <p class="lede" data-ru="Снимаю то, что сложно снять: <b>экшн, каскадёров и спецэффекты</b> — так, чтобы это работало на историю, а не на хронометраж." data-en="I shoot what's hard to shoot: <b>action, stunts and effects</b> — built to serve the story, not the running time.">Снимаю то, что сложно снять: <b>экшн, каскадёров и спецэффекты</b> — так, чтобы это работало на историю, а не на хронометраж.</p>
-    <div class="beats">
-      <div class="beat">
-        <span class="mono" data-ru="Школа" data-en="Training">Школа</span>
-        <p data-ru="Режиссёрское образование получил в Столичном колледже в Салониках, где учился у <strong>Йоргоса Лантимоса</strong>." data-en="Studied directing at Metropolitan College in Thessaloniki, under <strong>Yorgos Lanthimos</strong>.">Режиссёрское образование получил в Столичном колледже в Салониках, где учился у <strong>Йоргоса Лантимоса</strong>.</p>
-      </div>
-      <div class="beat">
-        <span class="mono" data-ru="Дебют" data-en="Debut">Дебют</span>
-        <p data-ru="Дебютировал в режиссуре с продакшн-компанией <strong>Versus Pictures</strong> Ильи Найшуллера — клипы «Эйфория» и «Боль Слёзы Кровь» для артиста Кассеты, отмеченные наградами." data-en="Debuted with <strong>Versus Pictures</strong>, Ilya Naishuller's company — the award-winning videos “Euphoria” and “Pain Tears Blood” for the artist Kasseta.">Дебютировал в режиссуре с продакшн-компанией <strong>Versus Pictures</strong> Ильи Найшуллера — клипы «Эйфория» и «Боль Слёзы Кровь» для артиста Кассеты, отмеченные наградами.</p>
-      </div>
-      <div class="beat">
-        <span class="mono" data-ru="Клипы" data-en="Videos">Клипы</span>
-        <p data-ru="Снял самые масштабные клипы в карьере <strong>Басты</strong> для проекта RABOCHIY GORODOK — с топовыми актёрами киноиндустрии и большим объёмом спецэффектов." data-en="Directed the largest music videos of <strong>Basta's</strong> career for RABOCHIY GORODOK — leading film actors, heavy visual effects.">Снял самые масштабные клипы в карьере <strong>Басты</strong> для проекта RABOCHIY GORODOK — с топовыми актёрами киноиндустрии и большим объёмом спецэффектов.</p>
-      </div>
-      <div class="beat">
-        <span class="mono" data-ru="Сериал" data-en="Series">Сериал</span>
-        <p data-ru="Режиссёр второго сезона сериала <strong>«Ландыши. Вторая весна»</strong> — премьера на СТС, 14 млн зрителей." data-en="Director of season two of <strong>“Landyshi. Second Spring”</strong> — premiered on STS, 14 million viewers.">Режиссёр второго сезона сериала <strong>«Ландыши. Вторая весна»</strong> — премьера на СТС, 14 млн зрителей.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- КОНТАКТЫ -->
-<section id="contact" class="contact">
-  <div class="head">
-    <h2 data-ru="Написать" data-en="Get in touch">Написать</h2>
-    <span class="mono" data-ru="Открыт к проектам" data-en="Open to projects">Открыт к проектам</span>
-  </div>
-  <a class="mail" href="mailto:ilyashpota@gmail.com">ilyashpota@gmail.com</a>
-  <div class="chan">
-    <a href="tel:+79955099684"><span class="k" data-ru="Телефон" data-en="Phone">Телефон</span><span class="v">+7 995 509-96-84</span></a>
-    <a href="https://t.me/shpotaproductions" target="_blank" rel="noopener"><span class="k">Telegram</span><span class="v">@shpotaproductions</span></a>
-    <a href="https://www.youtube.com/@ilyashpota" target="_blank" rel="noopener"><span class="k">YouTube</span><span class="v">@ilyashpota</span></a>
-    <a href="https://vk.com/ilyashpota" target="_blank" rel="noopener"><span class="k">VK</span><span class="v">vk.com/ilyashpota</span></a>
-  </div>
-</section>
-
-<footer>
-  <span>Илья Шпота · Ilya Shpota</span>
-  <span data-ru="Режиссёр · Москва" data-en="Director · Moscow">Режиссёр · Москва</span>
-</footer>
-
-<!-- ЛАЙТБОКС -->
-<div class="lb" id="lb" role="dialog" aria-modal="true">
-  <button class="x" id="lbx" data-ru="Закрыть ✕" data-en="Close ✕">Закрыть ✕</button>
-  <div class="wrap" id="lbw"></div>
-  <div class="lbcap" id="lbc"></div>
+<div class="pop" id="pop" role="dialog" aria-modal="true">
+  <button class="x" id="popx" aria-label="Close"><i></i><i></i></button>
+  <div class="vid" id="vid"></div>
+  <div class="cap" id="cap"></div>
 </div>
 
 <script>
 /* ============================================================
-   1. РАБОТЫ — здесь всё, что нужно править.
-   vimeo: вставьте ID ролика (цифры из ссылки vimeo.com/XXXXXXXXX).
-   title: если оставить пустым, подпись просто не покажется.
+   1. СОДЕРЖИМОЕ — здесь всё, что нужно править.
    ============================================================ */
+const SITE = {
+  email: 'ilyashpota@gmail.com',
+  phone: '+7 995 509-96-84',
+  portrait: '',   // URL фото для страницы «О режиссёре». Пусто — страница без фото.
+  links: [
+    {label:'Vimeo',    url:'https://vimeo.com/ilyashpota'},
+    {label:'YouTube',  url:'https://www.youtube.com/@ilyashpota'},
+    {label:'Telegram', url:'https://t.me/shpotaproductions'},
+    {label:'VK',       url:'https://vk.com/ilyashpota'}
+  ]
+};
+
 const WORKS = [
   {cat:"action", vimeo:"1113601671", year:"2025", title:{ru:"Экшн-шоурил 2025", en:"Action showreel 2025"},
    poster:"https://i.vimeocdn.com/video/2052138250-9a0863c90ba3b2a4ad092cd62411937467bed2216bbbde7b345ceea9af4265c7-d_640",
@@ -383,155 +244,146 @@ const WORKS = [
    info:"Песня: Привет - Nansi & Sidorov (https://t.me/sidnansi)"}
 ];
 
-const CATS = [
-  {id:'all',    ru:'Всё',     en:'All'},
-  {id:'ad',     ru:'Реклама', en:'Commercials'},
-  {id:'clip',   ru:'Клипы',   en:'Music videos'},
-  {id:'film',   ru:'Кино',    en:'Film'},
-  {id:'action', ru:'Экшн',    en:'Action'}
-];
+const T = {
+  ru:{
+    clip:'Клипы', ad:'Реклама', film:'Кино', reel:'Шоурил', about:'О режиссёре',
+    sub:'Режиссёр · Москва',
+    lead:'Снимаю то, что сложно снять: <strong>экшн, каскадёров и спецэффекты</strong> — так, чтобы это работало на историю, а не на хронометраж.',
+    bio:[
+      'Режиссёрское образование получил в Столичном колледже в Салониках, где учился у <strong>Йоргоса Лантимоса</strong>.',
+      'Дебютировал в режиссуре с продакшн-компанией <strong>Versus Pictures</strong> Ильи Найшуллера — клипы «Эйфория» и «Боль Слёзы Кровь» для артиста Кассеты, отмеченные наградами.',
+      'Снял самые масштабные клипы в карьере <strong>Басты</strong> для проекта RABOCHIY GORODOK — с топовыми актёрами киноиндустрии и большим объёмом спецэффектов.',
+      'Режиссёр второго сезона сериала <strong>«Ландыши. Вторая весна»</strong> — премьера на СТС, 14 млн зрителей.'
+    ],
+    contact:'Контакты', mail:'Почта', phone:'Телефон',
+    none:'Видео пока недоступно', empty:'Здесь пока пусто'
+  },
+  en:{
+    clip:'Music videos', ad:'Commercials', film:'Film', reel:'Showreel', about:'About',
+    sub:'Director · Moscow',
+    lead:'I shoot what’s hard to shoot: <strong>action, stunts and effects</strong> — built to serve the story, not the running time.',
+    bio:[
+      'Studied directing at Metropolitan College in Thessaloniki, under <strong>Yorgos Lanthimos</strong>.',
+      'Debuted with <strong>Versus Pictures</strong>, Ilya Naishuller’s company — the award-winning videos “Euphoria” and “Pain Tears Blood” for the artist Kasseta.',
+      'Directed the largest music videos of <strong>Basta’s</strong> career for RABOCHIY GORODOK — leading film actors, heavy visual effects.',
+      'Director of season two of <strong>“Landyshi. Second Spring”</strong> — premiered on STS, 14 million viewers.'
+    ],
+    contact:'Contact', mail:'Email', phone:'Phone',
+    none:'Video not available yet', empty:'Nothing here yet'
+  }
+};
 
-let lang = 'ru';
-let filter = 'all';
+/* ============================================================
+   2. ЛОГИКА
+   ============================================================ */
+const $ = s => document.querySelector(s);
+const view = $('#view');
+let lang = (navigator.language||'').slice(0,2)==='ru' ? 'ru' : 'en';
+try{ const s = localStorage.getItem('lang'); if(s) lang = s; }catch(e){}
 
-/* ---------- отрисовка ---------- */
-const grid = document.getElementById('grid');
-const filtersEl = document.getElementById('filters');
-const countEl = document.getElementById('count');
+const ROUTES = {
+  '':            {title:null, cat:null},
+  'musicvideos': {title:'clip', cat:'clip'},
+  'commercials': {title:'ad',   cat:'ad'},
+  'film':        {title:'film', cat:'film'},
+  'about':       {title:'about'}
+};
+let route = '';
 
-function catName(id){ const c = CATS.find(c=>c.id===id); return c ? c[lang] : ''; }
+const big = u => (u||'').replace(/-d_\d+/, '-d_960');
+const split = s => { const i = s.indexOf(' — '); return i<0 ? ['', s] : [s.slice(0,i), s.slice(i+3)]; };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-function renderFilters(){
-  filtersEl.innerHTML = '';
-  CATS.forEach(c=>{
-    const n = c.id==='all' ? WORKS.length : WORKS.filter(w=>w.cat===c.id).length;
-    if(n===0) return;
-    const b = document.createElement('button');
-    b.textContent = c[lang];
-    b.setAttribute('aria-pressed', filter===c.id);
-    b.onclick = ()=>{ filter = c.id; renderFilters(); applyFilter(); };
-    filtersEl.appendChild(b);
-  });
+function tileHTML(w,i){
+  const [a,b] = split(w.title[lang]);
+  return '<a class="tile rv" tabindex="0" role="button" data-i="'+i+'" aria-label="'+esc(w.title[lang])+'">'+
+    '<div class="bg" style="background-image:url(\''+big(w.poster)+'\')"></div>'+
+    '<div class="tt">'+(a?'<small>'+esc(a)+'</small>':'')+esc(b)+'<em>'+w.year+'</em></div></a>';
 }
 
-function renderGrid(){
-  grid.innerHTML = '';
-  WORKS.forEach((w,i)=>{
-    const t = document.createElement('button');
-    t.className = 'tile';
-    t.dataset.cat = w.cat;
-    t.innerHTML =
-      '<div class="shot">' +
-        '<img src="'+w.poster+'" alt="" loading="lazy">' +
-        '<u></u><u></u><u></u><u></u>' +
-      '</div>' +
-      '<div class="cap">' +
-        '<span class="t"></span>' +
-        '<span class="c"></span>' +
-      '</div>';
-    t.onclick = ()=>openLB(i);
-    grid.appendChild(t);
-  });
-  paintCaptions();
-  observe();
+function renderHome(){
+  return '<section class="intro"><h1>Илья <b>Шпота</b></h1><p>'+T[lang].sub+'</p></section>'+
+    '<div class="tiles">'+WORKS.map(tileHTML).join('')+'</div>';
+}
+function renderCat(cat){
+  const idx = WORKS.map((w,i)=>i).filter(i=>WORKS[i].cat===cat);
+  return '<div class="page-title">'+T[lang][cat]+'</div>'+
+    (idx.length ? '<div class="tiles">'+idx.map(i=>tileHTML(WORKS[i],i)).join('')+'</div>' : '<div class="empty">'+T[lang].empty+'</div>');
+}
+function renderAbout(){
+  const t = T[lang];
+  const photo = SITE.portrait ? '<div class="ph" style="background-image:url(\''+SITE.portrait+'\')"></div>' : '';
+  return '<div class="about'+(photo?'':' nophoto')+'">'+photo+'<div class="tx">'+
+    '<p class="lead">'+t.lead+'</p>'+t.bio.map(p=>'<p>'+p+'</p>').join('')+
+    '<h3>'+t.contact+'</h3><ul class="cont">'+
+      '<li><span>'+t.mail+'</span><a href="mailto:'+SITE.email+'">'+SITE.email+'</a></li>'+
+      '<li><span>'+t.phone+'</span><a href="tel:'+SITE.phone.replace(/[^+\d]/g,'')+'">'+SITE.phone+'</a></li>'+
+      SITE.links.map(l=>'<li><span>'+l.label+'</span><a href="'+l.url+'" target="_blank" rel="noopener">'+l.url.replace(/^https?:\/\/(www\.)?/,'')+'</a></li>').join('')+
+    '</ul></div></div>';
 }
 
-function paintCaptions(){
-  [...grid.children].forEach((t,i)=>{
-    t.querySelector('.cap .t').textContent = WORKS[i].title[lang] || '';
-    t.querySelector('.cap .c').textContent = catName(WORKS[i].cat)+(WORKS[i].year?' · '+WORKS[i].year:'');
-  });
-}
-
-function applyFilter(){
-  let n = 0;
-  [...grid.children].forEach(t=>{
-    const show = filter==='all' || t.dataset.cat===filter;
-    t.classList.toggle('hide', !show);
-    if(show) n++;
-  });
-  countEl.textContent = n + ' / ' + WORKS.length;
-}
-
-/* ---------- появление при скролле ---------- */
 let io;
 function observe(){
   if(io) io.disconnect();
-  io = new IntersectionObserver((es)=>{
-    es.forEach((e,k)=>{
-      if(e.isIntersecting){
-        setTimeout(()=>e.target.classList.add('in'), k*55);
-        io.unobserve(e.target);
-      }
-    });
-  }, {rootMargin:'0px 0px -8% 0px'});
-  [...grid.children].forEach(t=>io.observe(t));
+  io = new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('in'),(e.target.dataset.i%2)*90); io.unobserve(e.target); } });
+  },{rootMargin:'0px 0px -6% 0px'});
+  view.querySelectorAll('.tile').forEach(t=>io.observe(t));
 }
 
-/* ---------- лайтбокс ---------- */
-const lb = document.getElementById('lb'), lbw = document.getElementById('lbw');
-function openLB(i){
-  const w = WORKS[i];
-  if(w.vimeo){
-    lbw.innerHTML = '<iframe src="https://player.vimeo.com/video/'+w.vimeo+'?autoplay=1&title=0&byline=0" allow="autoplay; fullscreen" allowfullscreen></iframe>';
-  }else{
-    lbw.innerHTML = '<div class="none"><span class="mono">'+catName(w.cat)+'</span><p>'+
-      (lang==='ru'
-        ? 'Видео пока недоступно.'
-        : 'Video not available yet.')+'</p></div>';
-  }
-  const cap = document.getElementById('lbc');
-  cap.innerHTML = '';
-  if(w.title[lang]){
-    const tt = document.createElement('div'); tt.className='tt'; tt.textContent = w.title[lang];
-    const m = document.createElement('span'); m.className='mono'; m.textContent = catName(w.cat)+(w.year?' · '+w.year:'');
-    const inf = document.createElement('div'); inf.className='inf'; inf.textContent = w.info || '';
-    cap.append(m, tt, inf);
-  }
-  lb.classList.add('on');
-  document.body.style.overflow = 'hidden';
+function paint(){
+  const r = ROUTES[route] || ROUTES[''];
+  view.innerHTML = route==='about' ? renderAbout() : (r.cat ? renderCat(r.cat) : renderHome());
+  observe();
+  document.title = (r.title ? T[lang][r.title]+' — ' : '') + (lang==='ru' ? 'Илья Шпота' : 'Ilya Shpota');
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i]').forEach(el=>{ if(!el.classList.contains('tile')) el.textContent = T[lang][el.dataset.i]; });
+  document.querySelectorAll('.menu a[data-r]').forEach(a=>a.classList.toggle('on', a.dataset.r===route));
+  $('#logo').textContent = lang==='ru' ? 'Илья Шпота' : 'Ilya Shpota';
+  $('#ru').setAttribute('aria-pressed', lang==='ru');
+  $('#en').setAttribute('aria-pressed', lang==='en');
+  $('#foot').innerHTML = SITE.links.map(l=>'<li><a href="'+l.url+'" target="_blank" rel="noopener">'+l.label+'</a></li>').join('');
 }
-function closeLB(){ lb.classList.remove('on'); lbw.innerHTML=''; document.getElementById('lbc').innerHTML=''; document.body.style.overflow=''; }
-document.getElementById('lbx').onclick = closeLB;
-lb.onclick = e=>{ if(e.target===lb) closeLB(); };
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLB(); });
-document.querySelector('[data-reel]').onclick = ()=>openLB(0);
 
-/* ---------- таймкод + прогресс ---------- */
-const tcEl = document.getElementById('tc'), progEl = document.getElementById('prog');
-const TOTAL = 4*60 + 12; // «длительность» страницы, сек
-const p2 = n => String(n).padStart(2,'0');
-function tick(){
-  const max = document.body.scrollHeight - innerHeight;
-  const f = max > 0 ? Math.min(1, Math.max(0, scrollY/max)) : 0;
-  const frames = Math.round(f * TOTAL * 24);
-  tcEl.textContent = p2(Math.floor(frames/86400)) + ':' + p2(Math.floor(frames/1440)%60) + ':' + p2(Math.floor(frames/24)%60) + ':' + p2(frames%24);
-  progEl.style.width = (f*100) + '%';
+function go(){
+  const next = (location.hash.replace(/^#\/?/,'') || '').split('?')[0];
+  route = ROUTES[next] ? next : '';
+  closeMenu();
+  view.classList.add('fade');
+  setTimeout(()=>{ paint(); scrollTo(0,0); view.classList.remove('fade'); }, 200);
 }
-addEventListener('scroll', tick, {passive:true});
-addEventListener('resize', tick);
+addEventListener('hashchange', go);
+
+/* ---------- меню ---------- */
+const menu = $('#menu'), burger = $('#burger');
+function closeMenu(){ menu.classList.remove('open'); burger.classList.remove('x'); burger.setAttribute('aria-expanded','false'); }
+burger.onclick = ()=>{ const o = menu.classList.toggle('open'); burger.classList.toggle('x', o); burger.setAttribute('aria-expanded', o); };
 
 /* ---------- язык ---------- */
-function setLang(l){
-  lang = l;
-  document.documentElement.lang = l;
-  document.getElementById('ru').setAttribute('aria-pressed', l==='ru');
-  document.getElementById('en').setAttribute('aria-pressed', l==='en');
-  document.querySelectorAll('[data-ru]').forEach(el=>{
-    const v = el.getAttribute('data-'+l);
-    if(v!=null) el.innerHTML = v;
-  });
-  renderFilters();
-  paintCaptions();
+function setLang(l){ lang = l; try{ localStorage.setItem('lang', l); }catch(e){} paint(); closeMenu(); }
+$('#ru').onclick = ()=>setLang('ru');
+$('#en').onclick = ()=>setLang('en');
+
+/* ---------- попап ---------- */
+const pop = $('#pop'), vid = $('#vid'), cap = $('#cap');
+function openPop(i){
+  const w = WORKS[i];
+  vid.innerHTML = w.vimeo
+    ? '<iframe src="https://player.vimeo.com/video/'+w.vimeo+'?autoplay=1&title=0&byline=0&portrait=0&color=8FC4E8" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'
+    : '<div class="none">'+T[lang].none+'</div>';
+  const catName = {clip:T[lang].clip, ad:T[lang].ad, film:T[lang].film, action:T[lang].reel}[w.cat] || '';
+  cap.innerHTML = '<div class="m">'+catName+(w.year?' · '+w.year:'')+'</div><div class="t">'+esc(w.title[lang])+'</div>'+(w.info?'<div class="i">'+esc(w.info)+'</div>':'');
+  pop.classList.add('on'); document.body.style.overflow='hidden';
 }
-document.getElementById('ru').onclick = ()=>setLang('ru');
-document.getElementById('en').onclick = ()=>setLang('en');
+function closePop(){ pop.classList.remove('on'); vid.innerHTML=''; cap.innerHTML=''; document.body.style.overflow=''; }
+$('#popx').onclick = closePop;
+pop.onclick = e=>{ if(e.target===pop) closePop(); };
+addEventListener('keydown', e=>{ if(e.key==='Escape') closePop(); if((e.key==='Enter'||e.key===' ') && e.target.classList && e.target.classList.contains('tile')){ e.preventDefault(); e.target.click(); } });
+view.addEventListener('click', e=>{ const t = e.target.closest('.tile'); if(t) openPop(+t.dataset.i); });
+$('#reelBtn').onclick = ()=>{ const i = WORKS.findIndex(w=>w.cat==='action'); if(i>-1) openPop(i); closeMenu(); };
 
 /* ---------- старт ---------- */
-renderFilters();
-renderGrid();
-applyFilter();
-tick();
+(function(){ const next = (location.hash.replace(/^#\/?/,'') || '').split('?')[0]; route = ROUTES[next] ? next : ''; paint(); })();
 </script>
 </body>
 </html>
