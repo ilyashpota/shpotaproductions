@@ -10,14 +10,13 @@
 <meta property="og:image" content="https://i.vimeocdn.com/video/2052138250-9a0863c90ba3b2a4ad092cd62411937467bed2216bbbde7b345ceea9af4265c7-d_960">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap&subset=cyrillic,latin" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap&subset=cyrillic,latin" rel="stylesheet">
 <style>
 /* ============================================================
    ТОКЕНЫ
    ============================================================ */
 :root{
   --bg:#fff; --ink:#000; --mute:#858585; --line:#e6e6e6;
-  --accent:#8FC4E8;
   --font:'Jost','Futura','Century Gothic','Trebuchet MS',sans-serif;
   --head:100px;
 }
@@ -27,7 +26,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:4
 a{color:inherit;text-decoration:none;}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
 img{display:block;max-width:100%;}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px;}
 
 /* ============================================================
    ШАПКА (как у образца: белая, фиксированная, меню справа)
@@ -112,12 +111,12 @@ footer a:hover{color:var(--mute);}
 .pop .x{position:absolute;top:18px;right:22px;width:34px;height:34px;}
 .pop .x i{position:absolute;left:2px;right:2px;top:16px;height:2px;background:#fff;transition:background .3s;}
 .pop .x i:first-child{transform:rotate(45deg)}.pop .x i:last-child{transform:rotate(-45deg)}
-.pop .x:hover i{background:var(--accent);}
+.pop .x:hover i{background:#aaa;}
 .pop .vid{width:min(1100px,100%,calc((100vh - 230px) * 16 / 9));aspect-ratio:16/9;background:#000;}
 .pop .vid iframe{width:100%;height:100%;border:0;}
 .pop .none{height:100%;display:grid;place-items:center;color:#aaa;font-size:12px;letter-spacing:.2em;text-transform:uppercase;border:1px solid #333;}
 .pop .cap{width:min(1100px,100%,calc((100vh - 230px) * 16 / 9));color:#fff;}
-.pop .cap .m{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);}
+.pop .cap .m{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#aaa;}
 .pop .cap .t{margin-top:6px;font-size:clamp(20px,2.4vw,28px);letter-spacing:.04em;text-transform:uppercase;line-height:1.1;}
 .pop .cap .i{margin-top:8px;font-size:13px;line-height:19px;font-weight:300;color:#bbb;white-space:pre-line;max-height:5.8em;overflow:auto;}
 
@@ -125,18 +124,6 @@ footer a:hover{color:var(--mute);}
 /* ============================================================
    ЭКРАН ЗАГРУЗКИ + ГЕРОЙ-СЛАЙДЕР (анимация как у mishashishebarov.com)
    ============================================================ */
-.mono{font-family:'JetBrains Mono',ui-monospace,monospace;}
-.ld{position:fixed;inset:0;z-index:200;display:none;}
-.ld.on{display:block;}
-.ld .t,.ld .b{position:absolute;left:0;right:0;background:#000;height:calc(50% - 63px);transition:height .95s cubic-bezier(.77,0,.18,1);}
-.ld .t{top:0;}.ld .b{bottom:0;}
-.ld .bar{position:absolute;left:0;right:0;top:calc(50% - 63px);height:126px;background:#181818;transition:background .5s .1s;}
-.ld .fill{position:absolute;left:0;top:0;bottom:0;width:150px;background:var(--accent);transition:opacity .4s;}
-.ld .lt,.ld .pc{position:absolute;top:50%;transform:translateY(-50%);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:#000;}
-.ld .lt{left:20px;}.ld .pc{right:18px;}
-.ld.open .t,.ld.open .b{height:0;}
-.ld.open .bar{background:transparent;}
-.ld.open .fill{opacity:0;}
 
 .hs{position:relative;height:100vh;height:100svh;margin-top:calc(var(--head) * -1);overflow:hidden;background:#000;color:#fff;user-select:none;}
 .hs-track{display:flex;height:100%;width:100%;transition:transform 1s cubic-bezier(.65,0,.2,1);will-change:transform;}
@@ -150,25 +137,21 @@ footer a:hover{color:var(--mute);}
 
 .hs-title{position:absolute;left:20px;top:50%;transform:translateY(-50%);text-align:left;color:#fff;max-width:calc(100% - 40px);cursor:pointer;}
 .hs-title .ln{display:block;width:fit-content;position:relative;padding:.02em .2em .04em .2em;margin-left:-.2em;font-size:clamp(28px,4.6vw,72px);font-weight:500;line-height:1.08;letter-spacing:.02em;text-transform:uppercase;overflow:hidden;}
-.hs-title .ln::before{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .65s cubic-bezier(.65,0,.2,1);}
-.hs-title .ln i{position:relative;font-style:normal;display:block;transform:translateY(110%);transition:transform .8s cubic-bezier(.2,.7,.2,1),color .35s;text-shadow:0 2px 24px rgba(0,0,0,.45);}
+.hs-title .ln i{position:relative;font-style:normal;display:block;transform:translateY(110%);transition:transform .8s cubic-bezier(.2,.7,.2,1);text-shadow:0 2px 28px rgba(0,0,0,.5);}
 .hs-slide.act .hs-title .ln i{transform:none;}
-.hs-slide.act .hs-title .ln:nth-child(1) i{transition-delay:.55s,0s;}
-.hs-slide.act .hs-title .ln:nth-child(2) i{transition-delay:.68s,0s;}
-.hs-slide.hl .hs-title .ln::before{transform:scaleX(1);}
-.hs-slide.hl .hs-title .ln:nth-child(2)::before{transition-delay:.12s;}
-.hs-slide.hl .hs-title .ln i{color:#000;text-shadow:none;}
-.hs-title em{display:block;margin-top:14px;font:400 12px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;opacity:0;transition:opacity .6s .9s;}
+.hs-slide.act .hs-title .ln:nth-child(1) i{transition-delay:.35s;}
+.hs-slide.act .hs-title .ln:nth-child(2) i{transition-delay:.48s;}
+.hs-title em{display:block;margin-top:14px;font:400 12px var(--font);letter-spacing:.2em;text-transform:uppercase;opacity:0;transition:opacity .6s .8s;}
 .hs-slide.act .hs-title em{opacity:.85;}
 
-.hs-nav{position:absolute;left:20px;bottom:22px;z-index:3;display:flex;align-items:center;gap:12px;font:400 12px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;}
+.hs-nav{position:absolute;left:20px;bottom:22px;z-index:3;display:flex;align-items:center;gap:12px;font:400 12px var(--font);letter-spacing:.1em;text-transform:uppercase;}
 .hs-nav button{color:#fff;opacity:.75;transition:opacity .3s,color .3s;padding:6px 0;}
-.hs-nav button:hover{opacity:1;color:var(--accent);}
+.hs-nav button:hover{opacity:1;}
 .hs-dots{display:flex;gap:4px;}
 .hs-dots i{display:block;width:3px;height:14px;background:rgba(255,255,255,.35);transition:background .3s,height .3s;cursor:pointer;}
-.hs-dots i.on{background:var(--accent);}
-.hs-all{position:absolute;right:20px;bottom:22px;z-index:3;font:400 12px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:6px 0;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;}
-.hs-all:hover{color:var(--accent);border-color:var(--accent);}
+.hs-dots i.on{background:#fff;}
+.hs-all{position:absolute;right:20px;bottom:22px;z-index:3;font:400 12px var(--font);letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:6px 0;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;}
+.hs-all:hover{border-color:#fff;}
 .hs-all::after{content:' ↓';}
 
 #all{scroll-margin-top:var(--head);}
@@ -214,11 +197,6 @@ footer a:hover{color:var(--mute);}
 </style>
 </head>
 <body>
-
-<div class="ld" id="ld" aria-hidden="true">
-  <div class="t"></div><div class="b"></div>
-  <div class="bar"><div class="fill" id="ldfill"><span class="lt" id="ldt"></span><span class="pc" id="ldp">0%</span></div></div>
-</div>
 
 <header class="head" id="head">
   <a class="brand" href="#/"><span class="logo" id="logo">Илья Шпота</span><span class="role" id="role"></span></a>
@@ -395,7 +373,7 @@ function renderHome(){
 }
 
 /* ---------- герой-слайдер ---------- */
-let autoT = null, hsTimer = null, popOpen = false, holdHero = false;
+let autoT = null, hsTimer = null, popOpen = false;
 function initSlider(){
   clearInterval(autoT); clearTimeout(hsTimer);
   const hs = $('#hs'); if(!hs) return;
@@ -430,7 +408,7 @@ function initSlider(){
     slides.forEach((s,k)=>{ s.classList.toggle('act', k===cur); if(k!==cur) s.classList.remove('hl'); });
     dots.forEach((d,k)=>d.classList.toggle('on', k===cur));
     clearTimeout(hsTimer);
-    hsTimer = setTimeout(()=>{ slides[cur].classList.add('hl'); mount(cur); moving=false; }, instant?1000:950);
+    hsTimer = setTimeout(()=>{ mount(cur); moving=false; }, instant?1000:950);
   }
   function go(d){ if(moving) return; moving = true; show(cur+d); restart(); }
   function restart(){ clearInterval(autoT); if(!matchMedia('(prefers-reduced-motion:reduce)').matches) autoT = setInterval(()=>{ if(visible && !popOpen && !document.hidden) { moving=true; show(cur+1); } }, 7500); }
@@ -447,8 +425,7 @@ function initSlider(){
   hs._key = e=>{ if(popOpen || !$('#hs')) return; if(e.key==='ArrowRight') go(1); if(e.key==='ArrowLeft') go(-1); };
   new IntersectionObserver(es=>{ visible = es[0].isIntersecting; }, {threshold:.2}).observe(hs);
 
-  hs._start = ()=>{ show(0, true); restart(); };
-  if(!holdHero) hs._start();
+  show(0, true); restart();
 }
 addEventListener('keydown', e=>{ const hs = $('#hs'); if(hs && hs._key) hs._key(e); });
 
@@ -458,47 +435,6 @@ function updHead(){ headEl.classList.toggle('over', route==='' && scrollY < inne
 addEventListener('scroll', updHead, {passive:true});
 addEventListener('resize', updHead);
 
-/* ---------- экран загрузки ---------- */
-function runLoader(done){
-  const ld = $('#ld'), fill = $('#ldfill');
-  $('#ldt').textContent = T[lang].load;
-  ld.classList.add('on'); document.body.style.overflow = 'hidden';
-  const urls = WORKS.filter(w=>w.hero).map(w=>big(w.poster,1280));
-  let loaded = 0, shown = 0, t0 = performance.now(), finished = false;
-  urls.forEach(u=>{ const im = new Image(); im.onload = im.onerror = ()=>loaded++; im.src = u; });
-  (function tick(){
-    const el = performance.now() - t0;
-    const real = loaded/urls.length;
-    const target = Math.min(1, Math.min(el/1800, 1) * (0.25 + 0.75*real) + (el>6000 ? 1 : 0));
-    shown += (target - shown) * 0.12;
-    if(target >= 1 && shown > .985) shown = 1;
-    const p = Math.round(shown*100);
-    fill.style.width = 'calc(150px + (100% - 150px) * '+shown.toFixed(3)+')';
-    $('#ldp').textContent = p+'%';
-    if(shown < 1) return requestAnimationFrame(tick);
-    if(finished) return; finished = true;
-    setTimeout(()=>{
-      ld.classList.add('open');
-      setTimeout(()=>{ ld.classList.remove('on','open'); fill.style.width='150px'; document.body.style.overflow=''; done && done(); }, 1000);
-    }, 250);
-  })();
-}
-function renderCat(cat){
-  const idx = WORKS.map((w,i)=>i).filter(i=>WORKS[i].cat===cat);
-  return '<div class="page-title">'+T[lang][cat]+'</div>'+
-    (idx.length ? '<div class="tiles">'+idx.map(i=>tileHTML(WORKS[i],i)).join('')+'</div>' : '<div class="empty">'+T[lang].empty+'</div>');
-}
-function renderAbout(){
-  const t = T[lang];
-  const photo = SITE.portrait ? '<div class="ph" style="background-image:url(\''+SITE.portrait+'\')"></div>' : '';
-  return '<div class="about'+(photo?'':' nophoto')+'">'+photo+'<div class="tx">'+
-    '<p class="lead">'+t.lead+'</p>'+t.bio.map(p=>'<p>'+p+'</p>').join('')+
-    '<h3>'+t.contact+'</h3><ul class="cont">'+
-      '<li><span>'+t.mail+'</span><a href="mailto:'+SITE.email+'">'+SITE.email+'</a></li>'+
-      '<li><span>'+t.phone+'</span><a href="tel:'+SITE.phone.replace(/[^+\d]/g,'')+'">'+SITE.phone+'</a></li>'+
-      SITE.links.map(l=>'<li><span>'+l.label+'</span><a href="'+l.url+'" target="_blank" rel="noopener">'+l.url.replace(/^https?:\/\/(www\.)?/,'')+'</a></li>').join('')+
-    '</ul></div></div>';
-}
 
 let io;
 function observe(){
@@ -549,7 +485,7 @@ const pop = $('#pop'), vid = $('#vid'), cap = $('#cap');
 function openPop(i){
   const w = WORKS[i];
   vid.innerHTML = w.vimeo
-    ? '<iframe src="https://player.vimeo.com/video/'+w.vimeo+'?autoplay=1&title=0&byline=0&portrait=0&color=8FC4E8" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'
+    ? '<iframe src="https://player.vimeo.com/video/'+w.vimeo+'?autoplay=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'
     : '<div class="none">'+T[lang].none+'</div>';
   const catName = {clip:T[lang].clip, ad:T[lang].ad, film:T[lang].film, action:T[lang].reel}[w.cat] || '';
   cap.innerHTML = '<div class="m">'+catName+(w.year?' · '+w.year:'')+'</div><div class="t">'+esc(w.title[lang])+'</div>'+(w.info?'<div class="i">'+esc(w.info)+'</div>':'');
@@ -565,11 +501,7 @@ $('#reelBtn').onclick = ()=>{ const i = WORKS.findIndex(w=>w.cat==='action'); if
 /* ---------- старт ---------- */
 (function(){
   const next = (location.hash.replace(/^#\/?/,'') || '').split('?')[0]; route = ROUTES[next] ? next : '';
-  let seen = false; try{ seen = sessionStorage.getItem('ld')==='1'; sessionStorage.setItem('ld','1'); }catch(e){}
-  const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
-  holdHero = (route==='' && !seen && !reduce);
   paint();
-  if(route==='' && !seen && !reduce){ runLoader(()=>{ holdHero = false; const hs = $('#hs'); if(hs && hs._start) hs._start(); }); }
 })();
 </script>
 </body>
