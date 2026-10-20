@@ -329,9 +329,13 @@ function tileHTML(w,i){
     '<div class="tt">'+(a?'<small>'+esc(a)+'</small>':'')+esc(b)+'<em>'+w.year+'</em></div></a>';
 }
 
+function heroSrc(){
+  const slow = navigator.connection && (navigator.connection.saveData || /2g/.test(navigator.connection.effectiveType||''));
+  return (innerWidth <= 820 || slow) ? 'media/hero-720.mp4' : 'media/hero-1080.mp4';
+}
 function renderHome(){
   return '<section class="hs" id="hs">'+
-    '<video class="hs-video" id="hsVid" poster="media/hero.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"><source src="media/hero.mp4" type="video/mp4"><source src="media/hero.webm" type="video/webm"></video>'+
+    '<video class="hs-video" id="hsVid" poster="media/hero.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true">'+'<source src="'+heroSrc()+'" type="video/mp4"><source src="media/hero.webm" type="video/webm"></video>'+
     '<div class="hs-shade"></div>'+
     '<button class="hs-all" id="hsAll">'+T[lang].all+'</button></section>'+
     '<div id="all"><div class="page-title">'+T[lang].all+'</div><div class="tiles">'+WORKS.map(tileHTML).join('')+'</div></div>';
