@@ -364,6 +364,23 @@ addEventListener('scroll', updHead, {passive:true});
 addEventListener('resize', updHead);
 
 
+function renderCat(cat){
+  const idx = WORKS.map((w,i)=>i).filter(i=>WORKS[i].cat===cat);
+  return '<div class="page-title">'+T[lang][cat]+'</div>'+
+    (idx.length ? '<div class="tiles">'+idx.map(i=>tileHTML(WORKS[i],i)).join('')+'</div>' : '<div class="empty">'+T[lang].empty+'</div>');
+}
+function renderAbout(){
+  const t = T[lang];
+  const photo = SITE.portrait ? '<div class="ph" style="background-image:url(\''+SITE.portrait+'\')"></div>' : '';
+  return '<div class="about'+(photo?'':' nophoto')+'">'+photo+'<div class="tx">'+
+    '<p class="lead">'+t.lead+'</p>'+t.bio.map(p=>'<p>'+p+'</p>').join('')+
+    '<h3>'+t.contact+'</h3><ul class="cont">'+
+      '<li><span>'+t.mail+'</span><a href="mailto:'+SITE.email+'">'+SITE.email+'</a></li>'+
+      '<li><span>'+t.phone+'</span><a href="tel:'+SITE.phone.replace(/[^+\d]/g,'')+'">'+SITE.phone+'</a></li>'+
+      SITE.links.map(l=>'<li><span>'+l.label+'</span><a href="'+l.url+'" target="_blank" rel="noopener">'+l.url.replace(/^https?:\/\/(www\.)?/,'')+'</a></li>').join('')+
+    '</ul></div></div>';
+}
+
 let io;
 function observe(){
   if(io) io.disconnect();
