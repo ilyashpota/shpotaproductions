@@ -122,35 +122,20 @@ footer a:hover{color:var(--mute);}
 
 
 /* ============================================================
-   ЭКРАН ЗАГРУЗКИ + ГЕРОЙ-СЛАЙДЕР (анимация как у mishashishebarov.com)
+   ГЕРОЙ: фоновое видео-монтаж на главной
    ============================================================ */
-
-.hs{position:relative;height:100vh;height:100svh;margin-top:calc(var(--head) * -1);overflow:hidden;background:#000;color:#fff;user-select:none;}
-.hs-track{display:flex;height:100%;width:100%;transition:transform 1s cubic-bezier(.65,0,.2,1);will-change:transform;}
-.hs-slide{position:relative;flex:0 0 100%;height:100%;overflow:hidden;}
-.hs-bg{position:absolute;inset:-2%;background-size:cover;background-position:center;transform:scale(1.08);transition:transform 6s ease-out;}
-.hs-slide.act .hs-bg{transform:scale(1);}
-.hs-vid{position:absolute;inset:0;opacity:0;transition:opacity .8s;pointer-events:none;overflow:hidden;}
-.hs-vid.on{opacity:1;}
-.hs-vid iframe{position:absolute;left:50%;top:50%;width:max(100vw,177.78vh);height:max(100vh,56.25vw);transform:translate(-50%,-50%);border:0;}
-.hs-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.18) 55%,rgba(0,0,0,0) 100%),linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.05) 26%,rgba(0,0,0,.1) 60%,rgba(0,0,0,.62) 100%);pointer-events:none;}
-
-.hs-title{position:absolute;left:20px;top:50%;transform:translateY(-50%);text-align:left;color:#fff;max-width:calc(100% - 40px);cursor:pointer;}
-.hs-title .ln{display:block;width:fit-content;position:relative;padding:.02em .2em .04em .2em;margin-left:-.2em;font-size:clamp(28px,4.6vw,72px);font-weight:500;line-height:1.08;letter-spacing:.02em;text-transform:uppercase;overflow:hidden;}
-.hs-title .ln i{position:relative;font-style:normal;display:block;transform:translateY(110%);transition:transform .8s cubic-bezier(.2,.7,.2,1);text-shadow:0 2px 28px rgba(0,0,0,.5);}
-.hs-slide.act .hs-title .ln i{transform:none;}
-.hs-slide.act .hs-title .ln:nth-child(1) i{transition-delay:.35s;}
-.hs-slide.act .hs-title .ln:nth-child(2) i{transition-delay:.48s;}
-.hs-title em{display:block;margin-top:14px;font:400 12px var(--font);letter-spacing:.2em;text-transform:uppercase;opacity:0;transition:opacity .6s .8s;}
-.hs-slide.act .hs-title em{opacity:.85;}
-
-.hs-nav{position:absolute;left:20px;bottom:22px;z-index:3;display:flex;align-items:center;gap:12px;font:400 12px var(--font);letter-spacing:.1em;text-transform:uppercase;}
-.hs-nav button{color:#fff;opacity:.75;transition:opacity .3s,color .3s;padding:6px 0;}
-.hs-nav button:hover{opacity:1;}
-.hs-dots{display:flex;gap:4px;}
-.hs-dots i{display:block;width:3px;height:14px;background:rgba(255,255,255,.35);transition:background .3s,height .3s;cursor:pointer;}
-.hs-dots i.on{background:#fff;}
-.hs-all{position:absolute;right:20px;bottom:22px;z-index:3;font:400 12px var(--font);letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:6px 0;border-bottom:1px solid transparent;transition:color .3s,border-color .3s;}
+.hs{position:relative;height:100vh;height:100svh;margin-top:calc(var(--head) * -1);overflow:hidden;background:#000;color:#fff;}
+.hs-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000 center/cover no-repeat;}
+.hs-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.2) 50%,rgba(0,0,0,0) 100%),linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.05) 26%,rgba(0,0,0,.1) 60%,rgba(0,0,0,.6) 100%);pointer-events:none;}
+.hs-title{position:absolute;left:20px;top:50%;transform:translateY(-50%);max-width:calc(100% - 40px);}
+.hs-title .ln{display:block;overflow:hidden;}
+.hs-title .ln i{display:block;font-style:normal;animation:hsrise 1s cubic-bezier(.2,.7,.2,1) both;text-shadow:0 2px 28px rgba(0,0,0,.5);}
+.hs-title .nm{font-size:clamp(40px,7.2vw,112px);font-weight:500;line-height:1.02;letter-spacing:.02em;text-transform:uppercase;}
+.hs-title .nm i{animation-delay:.15s;}
+.hs-title .rl{margin-top:12px;font-size:clamp(13px,1.3vw,18px);font-weight:400;letter-spacing:.26em;text-transform:uppercase;}
+.hs-title .rl i{animation-delay:.35s;}
+@keyframes hsrise{from{transform:translateY(110%);}to{transform:none;}}
+.hs-all{position:absolute;right:20px;bottom:22px;z-index:3;font:400 12px var(--font);letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:6px 0;border-bottom:1px solid transparent;transition:border-color .3s;}
 .hs-all:hover{border-color:#fff;}
 .hs-all::after{content:' ↓';}
 
@@ -179,9 +164,9 @@ footer a:hover{color:var(--mute);}
   .head.over .menu a,.head.over .menu button,.head.over .lang button{color:var(--mute);}
   .head.over .menu a.on,.head.over .lang button[aria-pressed="true"]{color:var(--ink);}
   .head.over .menu a::after,.head.over .menu button.lk::after{background:var(--ink);}
-  .hs-title .ln{font-size:clamp(24px,8vw,44px);}
-  .hs-nav{left:16px;bottom:18px;}.hs-all{right:16px;bottom:18px;}
+  .hs-all{right:16px;bottom:18px;}
   .hs-title{left:16px;}
+  .hs-title .nm{font-size:clamp(34px,11vw,56px);}
   .brand{gap:6px;}
   .role{font-size:9px;letter-spacing:.14em;}
   .burger{display:block;}
@@ -238,11 +223,11 @@ const SITE = {
 };
 
 const WORKS = [
-  {cat:"action", vimeo:"1113601671", hero:true, year:"2025", title:{ru:"Экшн-шоурил 2025", en:"Action showreel 2025"},
+  {cat:"action", vimeo:"1113601671", year:"2025", title:{ru:"Экшн-шоурил 2025", en:"Action showreel 2025"},
    poster:"https://i.vimeocdn.com/video/2052138250-9a0863c90ba3b2a4ad092cd62411937467bed2216bbbde7b345ceea9af4265c7-d_640",
    info:"Ilya Shpota - Director Showreel 2025\nEdit by Andrey Yanes"},
 
-  {cat:"film", vimeo:"1169556136", hero:true, year:"2026", title:{ru:"Ландыши. Вторая весна — трейлер", en:"Landyshi. Second Spring — trailer"},
+  {cat:"film", vimeo:"1169556136", year:"2026", title:{ru:"Ландыши. Вторая весна — трейлер", en:"Landyshi. Second Spring — trailer"},
    poster:"https://i.vimeocdn.com/video/2128352373-ca62cec914b0d54173954c3280a807416045a27cbe5f7f8a6f9101625cb7c1ad-d_640",
    info:"Во втором сезоне главную героиню ждут непростые испытания: распад музыкальной группы, захватывающие интриги, борьба за огромное наследство и, главное, поиски мужа Лёхи.\n\nПроизводством сериала «Ландыши. Вторая весна» занимается компания «Всемирные русские студии» совместно с «НМГ Студией» при поддержке АНО «ИРИ», АНО «Таврида.Арт» и контент-студии «Юг. Кино».  \n\nРежиссёр - Илья Шпота\nВ ролях: Ника Здорик, Сергей Городничий, Евгений Коряковский, Ирина Паутова, Денис Степанов, Владимир Тяптушкин, Станислав Белослудцев, Даня Андрущук, Вероника Тимофеева, Иван Алексеев, Иван Архангельский, Арина Савостьянова, Екатерина Эссен, Владислав Чербаев, Александр Гришин, Валерия Ланская, Анна Строк, Александр Яцко, Владимир Стержаков, Евгений Банифатов, Александр Карпиловский, Олеся Яппарова, Екатерина Семина, Дмитрий Блохин, Константин Новиков, Никита Суворов, Аруп Нанди, Михаил Астен, рэпер ST (Александр Степанов)."},
 
@@ -262,7 +247,7 @@ const WORKS = [
    poster:"https://i.vimeocdn.com/video/1951603453-85198008e794867db51be44d1f5e5b84e7402ada1d9085d19d2e07f9f6b5f0a0-d_640",
    info:"Commercial for kuper.ru and Ak Bars hockey team. \nDirected by Ilya Shpota\nCinematography by Mikhail Shishebarov\nEdit by Andrey Yanes\nProduction Zilant.pro\nKazan 2024"},
 
-  {cat:"clip", vimeo:"987738894", hero:true, year:"2024", title:{ru:"Рабочий городок — Death", en:"Rabochiy Gorodok — Death"},
+  {cat:"clip", vimeo:"987738894", year:"2024", title:{ru:"Рабочий городок — Death", en:"Rabochiy Gorodok — Death"},
    poster:"https://i.vimeocdn.com/video/1903359691-a9606e8de5aa7d52f2b5b5be676081041527d128cb03083364bf0b5dd5c5382b-d_640",
    info:"A wedding by Russian gangsters gets interrupted by romantic and deadly vampire couple. \n\n\"Death\" is inspired by films like \"From dusk to Dawn\" and \"Blade\", only with a Russian spin of 90s era.\n\nWriter & Director - Ilya Shpota\nCinematography - Mikhail Shishebarov\nProducers - Anton Kazantsev, Ilya Shpota\nProduction Design - Egor Kolyshkin\nEditor - Andrey Yanes\nExecutive Producers - Ivan Novikov, Ulyana Kabelko\nProduction - Shpota Productions (shpota.ru)"},
 
@@ -270,15 +255,15 @@ const WORKS = [
    poster:"https://i.vimeocdn.com/video/1898985269-27fd2d2f91b77269b64ee71ce27f48ec3f038dc31b673dd59e0879b8e4d2c880-d_640",
    info:"A high-ranking mob enforcer follow his boss orders to get his respect, slowly get tired of it and things become ugly which only causes several deaths.\n\nAn action short film, in form of music video, inspired by 80s action films, shot on 16mm film with no VFX, for maximum authenticity.\n\nWriter & Director - Ilya Shpota\nCinematography - Mikhail Shishebarov\nProducers - Anton Kazantsev, Ilya Shpota\nProduction Design - Egor Kolyshkin\nEditor - Andrey Yanes"},
 
-  {cat:"clip", vimeo:"822035159", hero:true, year:"2023", title:{ru:"Kasseta — Pain Tears Blood", en:"Kasseta — Pain Tears Blood"},
+  {cat:"clip", vimeo:"822035159", year:"2023", title:{ru:"Kasseta — Pain Tears Blood", en:"Kasseta — Pain Tears Blood"},
    poster:"https://i.vimeocdn.com/video/1791688480-e6dc336b325c075d791b9fc41c90ece919b6f2d7d2b9ff684c030d6acb354bf5-d_640",
    info:"18+\nA band of gangsters is trying to steal a music album from a local mafia boss, but not everything\ngoes according to plan. A short action film for the music artist “Kasseta\", inspired by video games and Hong Kong action movies.\n\nWriter & Director - Ilya Shpota\nCinematography - Mikhail Shishebarov\nProducer - Anton Kazantsev\nProduction Design - Valeria Kataeva\nEditor - Andrey Yanes\nProduction - shpota.productions\n\nStarring:\nKasseta\nSergey Shcherbin\nOleg Fisher\nSqwoz Bab\nBrazilic\nKsenia Dukalis\nThomas Mraz\nDenis Bonus\nEgor Kaldikov\n\nExecutive Producers - Yulia Savitskaya Kristina Bannikova Daria Markina\nPre-production producer - Inna Bakh\nLine Producer - Katerina Skibina\nProducer assistant - Grigorii Sergevchev Ivan Khlebnikov\nArt Department - Aleksandra Zhalnina Elizaveta Achintseva Aleksey Ozolin\nCostume designer - Solomakhina Elizaveta\nAssistant costume designer - Elizaveta Gil, Dmitrii Lisianskii, Matvei Gerasimov\nVFX - Spirit.view Herman Fetisoff Vakhtang Muradyan\nColorist - Mikhail Dirko\nSound Design & Music - Goldxfish\nPoster - Denis Kostrikov\nLogo - Rzhanova Marina\nCredit Art - Shirin Isakova\nStoryboard - Grigory Gonkov\nTech Artist - Nikita Muravich\nProps - Fedor Abakshin\nMake Up - Yulia Raschetova Daria Mezentseva, Ekaterina Stadnikova-Luzina\nGaffer - Konstantin Lirola\nLighting - Daniil Kopylov Georgii Krylov Valerij Belyakov Dmitrij Bojko\n1AD - Yulia Savitskaya Ekaterina Liakina\n2AD - Sergei Сhernov, Uliana Aksenova\n1AC - Ignat Veselov\n2AC - Roman Egorov\n2DOP - Mikhail Loshkarev\nBackstage - Alisa Chepurina\nAdmin Timur Rasulov Vlad Savinkin Alisa Prokofeva\nStunt Сoordinator - Oleg Bodiu\nStuntmen - Sam Batakov Alex Vashchuk Anton Andrienko Konstantin Raskatov Viacheslav\nRyzhkov Stas Derevyanko Sergey Smirnov Alexsey Maksymenkov AdminTimur Rasulov Vlad\nSavinkin Alisa Prokofeva\n\nSpecial thanks\nFULLZHEER, club \"BOUNCE\"\nКухня на районе\nPavel Lilienfield\nIlya Naishuller\nAleksandr Sukachev\nVictor Shpota\nAnna Bai\nSergey Melkom\nDimitris Koutsomitsos\nAntonis Panoris\nIvan Korobkov\nRysbek Bokeev"},
 
-  {cat:"clip", vimeo:"1007101864", hero:true, year:"2024", title:{ru:"Kasseta — Эйфория", en:"Kasseta — Euphoria"},
+  {cat:"clip", vimeo:"1007101864", year:"2024", title:{ru:"Kasseta — Эйфория", en:"Kasseta — Euphoria"},
    poster:"https://i.vimeocdn.com/video/1923923842-4e29d51b5a4f4217cf9488901f3517613d9763b982c8840f99b7c7c99b136b8e-d_640",
    info:"Концепция клипа родилась у режиссера Илье Шпоты во время первого\nпрослушивания трека “Эйфория”: задорный видеоряд, по его замыслу, прославляет\nмузыку как искусство, неподвластное времени. Идею Ильи подхватила продюсерская\nкомпания Versus Pictures, основанная режиссером Ильей Найшуллером, который\nисполнил в видео одну из эпизодических ролей. Также в клипе играют киноактёр Пётр\nСкворцов, диджей и блогер Карина Истомина и профессиональный сноубордист Денис\nБонус. Все герои уловили режиссерский замысел и обогатили видео своим неповторимым\nартистизмом.\n\nРежиссер / Сценарист - Илья Шпота / @ilyashpota\nОператор - Михаил Шишебаров / @misashisha\nХуд. пост. - Валерия Катаева / @ka.rida.ka\nПродюсер - Юлия Савицкая / @ms_savitskaya\nЛинейный продюсеры - Алина Дунаева, Ольга Худошина / @a_dunaeva17 @olgakhudoshinaa\nПродакшн - Versus Pictures www.versuspictures.ru / @versuspictures.ru\n\nКаст:\nПётр Скворцов\nКарина Истомина / @diamond_april\nДенис Бонус / @denisbonus\nТеймур Гасанов / @kasseta____\nИлья Найшуллер / @naishuller\nСергей Щербина / @scherbingold\nЭдуард Чемодаков / @actorchemodakov\nЛюдмила Асланова\nИван Ворошилов / @dopphighplayer\nЯков Хиценко / @yashahits\nОлег Бодю / @actor_bodiu_oleg\nАлександр Монахов\nВячеслав Рыжков\nKlaudia Kain / @klaudia.kain\nГужова Мария / @guzhova_m\nДмитрий Гринчев / @grinch_da\nАлександр Атанов / @a10oneasy\nСтас Шитиков / @stason_satori\nМонтаж - Андрей Янес / @andreyyanes1998\nМузыка - goldxfishmusic / @goldxfishmusic\nХудожественный отдел - Александра Жалнина, Анастасия Новикова\nТехнический художник - Никита Маравич / @artmuravich\nДизайн костюмов - Богдан Шувакин / @bogdan_sstyle\nМакияж - Мария Полежаева\nVFX - Вахтанг Мурадян, Герман Фетисов, Chris Orfanidis / @VahMG @fetisoffg\nЦветокоррекция - Михаил Дирко @dirko.color\nПомощник по Дизайну Костюмов - Шерин Кики\nПомощник По Макияжу - Мария Мерфи, Ирина Ахматова\nГаффер - Bima Dojko / @bimadojko\nОтдел Камеры - Артем Протасов, Михаил Лазарев, Данила Степанов\nFocus Puller - Мария Ростовская / @mglbv\nСвет - Иван Черкасов / @chechechechecheche\nBackstage - Евгений Галимов / @tytwonderboy\nРаскадровка - Григорий Гонков / @grigory_gonkov\nPoster - Damn. S. Daniel, Fares Dem / @damn.s.daniel @fares.dem\nОсобая благодарность: Павел Лилиенфельд, Илья Найшуллер, Александр Сукачев, Марта\nРадаева, Анастасия Вороновская, Сергей Покровский, Антон Лымарев, Юрий Рева, Алексей\nБудовский, Анастасия Гирияк, Влад Шуберт, Noor Bar."},
 
-  {cat:"clip", vimeo:"999499567", hero:true, year:"2024", title:{ru:"Kasseta — Раз два", en:"Kasseta — Raz Dva"},
+  {cat:"clip", vimeo:"999499567", year:"2024", title:{ru:"Kasseta — Раз два", en:"Kasseta — Raz Dva"},
    poster:"https://i.vimeocdn.com/video/1915638768-61558a44486839c4f4d6471358bcae85f9d7cd2e1cf269e9cad9a17deb95c919-d_640",
    info:"Writer & Director - llya Shpota\nDOP - Mikhail Shishebarov\nProducer - Ivan Novikov\nProduction Designer - Egor Kolyshkin \nEditor - Andrey Yanes\nProduction - Shpota Productions (shpota.ru)\n\nStarring:\nKasseta\nVictor Blud\nYan Toples \nEvgenii Mashkov \nOleg Fisher \nSergey Kuzmin \nDaria Goncharova \nMadina Sanaeva \nArmen Filippov \nRoman Tolkarev \nMaksim Sushko \nAzat Sadotdinov\n\nExecutive Producer - Telman Manafov \nLine producer - Emina Khadzhich \nLine producer - Korablin Rostislav \nLine producer - Grigoriy Sergevchev \nGAZ Producer - Aliya Liya \nShpota Producer - Anton Kazantsev \n1AD - Sergei Pavlov\nVFX - Herman Fetisoff\nColorist - Mikhail Dirko\n2nd DOP - Mikhail Loshkarev\nCamera assistant - Vladimir Orlov \nFocus-puller - Ekaterina Simanova\nP.D. Assistant - Mark Mesherin\nProps - Alexander Enbulaev\nHead of costume department - Irina Timofeeva \nStylist assistant - Svetlana Papakina\nmake-up artist - Anastasiia Kazennova \nmake-up assistant - Anastasia Leschinskaya \nАmake-up assistant - Viktoria Koroz\n\nCasting - Arina Serzhantova\nCasting assistant - Alina Novikova\nLocation - Ray Merilin\n2stLocation - EgorKolumbet\nLight Crew & Dolly Gang - Malchishki\nGaffer - Konstantin Lirola\nGrip's Bima Dojko, Daniil Kopylov, Lyagushin Denis, Yan Kopanev, Alexandr Burakov\nChief Electrician - Georgii Krylov\nKey-Grip - Valeriy Belyakov\nPhotographer - Ivan Shemereko\nFight director - Alexey Maksimenkov\nAdministration - Karina Galyautdinova, Valeriya Latypova \nCamera Rental - Kirillin Camera Rental\n\nSound prod. by @dopefisher , @low_liquid\n\nCast:\nKarina Dammi, Elbek Abdihafizzov, Valeriya Lapytova, Gleb Petrosyan, Rodion Polyah, Anastasiia Mamontova, Albert Timerbaev, Anastasiia Kahischeva, Anastasiia Pehtereva, Daria Sozonova, Anna Strybko, Alexey Takunin, Anastasiia Mulyar, Iliya Zaharenkov\nDmitrii Eremenlo, Daria Goncharova, Inna Komyslyaschaya, Ekaterina Kazachenko, Danila Kislov, Artem Kashlev, Herman Fetisoff\nEduard Arutyunyan, Yurii Li\n\nLocation:\nThe team of the Aglomerat club “Bupas Gym” Boxing Club Special thanks - Denis Poymanov"},
 
@@ -354,80 +339,28 @@ function tileHTML(w,i){
     '<div class="tt">'+(a?'<small>'+esc(a)+'</small>':'')+esc(b)+'<em>'+w.year+'</em></div></a>';
 }
 
-function slideHTML(i){
-  const w = WORKS[i], [a,b] = split(w.title[lang]);
-  const catName = {clip:T[lang].clip, ad:T[lang].ad, film:T[lang].film, action:T[lang].reel}[w.cat] || '';
-  return '<div class="hs-slide" data-w="'+i+'">'+
-    '<div class="hs-bg" style="background-image:url(\''+big(w.poster,1280)+'\')"></div>'+
-    '<div class="hs-vid"></div><div class="hs-shade"></div>'+
-    '<button class="hs-title" aria-label="'+esc(w.title[lang])+'">'+
-      (a?'<span class="ln"><i>'+esc(a)+'</i></span>':'')+'<span class="ln"><i>'+esc(b)+'</i></span>'+
-      '<em>'+catName+(w.year?' · '+w.year:'')+'</em></button></div>';
-}
 function renderHome(){
-  const feat = WORKS.map((w,i)=>i).filter(i=>WORKS[i].hero);
-  return '<section class="hs" id="hs"><div class="hs-track" id="hsTrack">'+feat.map(slideHTML).join('')+'</div>'+
-    '<div class="hs-nav"><button id="hsPrev">'+T[lang].prev+'</button><div class="hs-dots" id="hsDots">'+feat.map(()=>'<i></i>').join('')+'</div><button id="hsNext">'+T[lang].next+'</button></div>'+
+  return '<section class="hs" id="hs">'+
+    '<video class="hs-video" id="hsVid" poster="media/hero.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"><source src="media/hero.mp4" type="video/mp4"><source src="media/hero.webm" type="video/webm"></video>'+
+    '<div class="hs-shade"></div>'+
+    '<div class="hs-title"><span class="ln nm"><i>'+(lang==='ru'?'Илья Шпота':'Ilya Shpota')+'</i></span><span class="ln rl"><i>'+T[lang].sub+'</i></span></div>'+
     '<button class="hs-all" id="hsAll">'+T[lang].all+'</button></section>'+
     '<div id="all"><div class="page-title">'+T[lang].all+'</div><div class="tiles">'+WORKS.map(tileHTML).join('')+'</div></div>';
 }
 
-/* ---------- герой-слайдер ---------- */
-let autoT = null, hsTimer = null, popOpen = false;
-function initSlider(){
-  clearInterval(autoT); clearTimeout(hsTimer);
-  const hs = $('#hs'); if(!hs) return;
-  const track = $('#hsTrack'), slides = [...hs.querySelectorAll('.hs-slide')], dots = [...hs.querySelectorAll('.hs-dots i')];
-  let cur = 0, visible = true, moving = false;
-
-  function mount(i){
-    slides.forEach((s,k)=>{ if(k!==i){ const b = s.querySelector('.hs-vid'); b.classList.remove('on'); b.innerHTML=''; } });
-    const w = WORKS[+slides[i].dataset.w], box = slides[i].querySelector('.hs-vid');
-    if(!w.vimeo || box.firstChild) return;
-    const f = document.createElement('iframe');
-    f.src = 'https://player.vimeo.com/video/'+w.vimeo+'?background=1&autoplay=1&loop=1&muted=1&byline=0&title=0&portrait=0&dnt=1';
-    f.allow = 'autoplay; fullscreen'; f.setAttribute('tabindex','-1'); f.setAttribute('aria-hidden','true');
-    let live = false;
-    const onMsg = ev=>{
-      if(ev.source !== f.contentWindow) return;
-      let d = ev.data; try{ if(typeof d==='string') d = JSON.parse(d); }catch(e){ return; }
-      if(d && (d.event==='play' || d.event==='playProgress' || d.event==='timeupdate') && !live){ live = true; setTimeout(()=>box.classList.add('on'), 300); }
-    };
-    addEventListener('message', onMsg);
-    f.onload = ()=>{
-      ['play','playProgress'].forEach(v=>{ try{ f.contentWindow.postMessage(JSON.stringify({method:'addEventListener',value:v}),'*'); }catch(e){} });
-      setTimeout(()=>{ if(!live){ removeEventListener('message', onMsg); if(f.parentNode) f.remove(); } }, 7000);
-    };
-    box.appendChild(f);
-  }
-  function show(i, instant){
-    cur = (i + slides.length) % slides.length;
-    if(instant){ track.style.transition='none'; }
-    track.style.transform = 'translate3d('+(-100*cur)+'%,0,0)';
-    if(instant){ track.offsetHeight; track.style.transition=''; }
-    slides.forEach((s,k)=>{ s.classList.toggle('act', k===cur); if(k!==cur) s.classList.remove('hl'); });
-    dots.forEach((d,k)=>d.classList.toggle('on', k===cur));
-    clearTimeout(hsTimer);
-    hsTimer = setTimeout(()=>{ mount(cur); moving=false; }, instant?1000:950);
-  }
-  function go(d){ if(moving) return; moving = true; show(cur+d); restart(); }
-  function restart(){ clearInterval(autoT); if(!matchMedia('(prefers-reduced-motion:reduce)').matches) autoT = setInterval(()=>{ if(visible && !popOpen && !document.hidden) { moving=true; show(cur+1); } }, 7500); }
-
-  $('#hsPrev').onclick = ()=>go(-1);
-  $('#hsNext').onclick = ()=>go(1);
-  dots.forEach((d,k)=>d.onclick = ()=>{ if(k!==cur && !moving){ moving=true; show(k); restart(); } });
-  hs.querySelectorAll('.hs-title').forEach(b=>b.onclick = ()=>openPop(+b.closest('.hs-slide').dataset.w));
+/* ---------- герой-видео ---------- */
+let popOpen = false, heroIO = null;
+function initHero(){
+  if(heroIO){ heroIO.disconnect(); heroIO = null; }
+  const hs = $('#hs'), v = $('#hsVid'); if(!hs || !v) return;
+  v.muted = true; v.defaultMuted = true;
+  const play = ()=>{ const p = v.play(); if(p && p.catch) p.catch(()=>{}); };
+  play();
   $('#hsAll').onclick = ()=>$('#all').scrollIntoView({behavior:'smooth'});
-  hs.addEventListener('wheel', e=>{ if(Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 24){ e.preventDefault(); go(e.deltaX>0?1:-1); } }, {passive:false});
-  let sx = null;
-  hs.addEventListener('touchstart', e=>{ sx = e.touches[0].clientX; }, {passive:true});
-  hs.addEventListener('touchend', e=>{ if(sx==null) return; const dx = e.changedTouches[0].clientX - sx; sx = null; if(Math.abs(dx) > 50) go(dx<0?1:-1); }, {passive:true});
-  hs._key = e=>{ if(popOpen || !$('#hs')) return; if(e.key==='ArrowRight') go(1); if(e.key==='ArrowLeft') go(-1); };
-  new IntersectionObserver(es=>{ visible = es[0].isIntersecting; }, {threshold:.2}).observe(hs);
-
-  show(0, true); restart();
+  heroIO = new IntersectionObserver(es=>{ if(es[0].isIntersecting){ if(!popOpen) play(); } else v.pause(); }, {threshold:.05});
+  heroIO.observe(hs);
 }
-addEventListener('keydown', e=>{ const hs = $('#hs'); if(hs && hs._key) hs._key(e); });
+document.addEventListener('visibilitychange', ()=>{ const v = $('#hsVid'); if(!v) return; if(document.hidden) v.pause(); else if(!popOpen) v.play().catch(()=>{}); });
 
 /* ---------- шапка поверх слайдера ---------- */
 const headEl = $('#head');
@@ -449,7 +382,7 @@ function paint(){
   const r = ROUTES[route] || ROUTES[''];
   view.innerHTML = route==='about' ? renderAbout() : (r.cat ? renderCat(r.cat) : renderHome());
   observe();
-  initSlider(); updHead();
+  initHero(); updHead();
   document.title = (r.title ? T[lang][r.title]+' — ' : '') + (lang==='ru' ? 'Илья Шпота' : 'Ilya Shpota');
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i]').forEach(el=>{ if(!el.classList.contains('tile')) el.textContent = T[lang][el.dataset.i]; });
@@ -489,9 +422,9 @@ function openPop(i){
     : '<div class="none">'+T[lang].none+'</div>';
   const catName = {clip:T[lang].clip, ad:T[lang].ad, film:T[lang].film, action:T[lang].reel}[w.cat] || '';
   cap.innerHTML = '<div class="m">'+catName+(w.year?' · '+w.year:'')+'</div><div class="t">'+esc(w.title[lang])+'</div>'+(w.info?'<div class="i">'+esc(w.info)+'</div>':'');
-  pop.classList.add('on'); document.body.style.overflow='hidden'; popOpen = true;
+  pop.classList.add('on'); document.body.style.overflow='hidden'; popOpen = true; { const v = $('#hsVid'); if(v) v.pause(); }
 }
-function closePop(){ pop.classList.remove('on'); vid.innerHTML=''; cap.innerHTML=''; document.body.style.overflow=''; popOpen = false; }
+function closePop(){ pop.classList.remove('on'); vid.innerHTML=''; cap.innerHTML=''; document.body.style.overflow=''; popOpen = false; { const v = $('#hsVid'); if(v && route==='' && scrollY < innerHeight) v.play().catch(()=>{}); } }
 $('#popx').onclick = closePop;
 pop.onclick = e=>{ if(e.target===pop) closePop(); };
 addEventListener('keydown', e=>{ if(e.key==='Escape') closePop(); if((e.key==='Enter'||e.key===' ') && e.target.classList && e.target.classList.contains('tile')){ e.preventDefault(); e.target.click(); } });
