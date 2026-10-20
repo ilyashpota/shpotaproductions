@@ -126,7 +126,8 @@ footer a:hover{color:var(--mute);}
    ============================================================ */
 .hs{position:relative;height:100vh;height:100svh;margin-top:calc(var(--head) * -1);overflow:hidden;background:#000;color:#fff;}
 .hs-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000 center/cover no-repeat;}
-.hs-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.2) 50%,rgba(0,0,0,0) 100%),linear-gradient(180deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.05) 26%,rgba(0,0,0,.1) 60%,rgba(0,0,0,.6) 100%);pointer-events:none;}
+.hs-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.22) 0,rgba(0,0,0,0) 150px),linear-gradient(0deg,rgba(0,0,0,.22) 0,rgba(0,0,0,0) 110px);pointer-events:none;}
+.hs-all{text-shadow:0 1px 14px rgba(0,0,0,.5);}
 .hs-all{position:absolute;right:20px;bottom:22px;z-index:3;font:400 12px var(--font);letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:6px 0;border-bottom:1px solid transparent;transition:border-color .3s;}
 .hs-all:hover{border-color:#fff;}
 .hs-all::after{content:' ↓';}
@@ -136,6 +137,7 @@ footer a:hover{color:var(--mute);}
 /* прозрачная шапка поверх слайдера */
 .head{transition:background .35s;}
 .head.over{background:transparent;}
+.head.over .logo,.head.over .role,.head.over .menu a,.head.over .menu button,.head.over .lang button{text-shadow:0 1px 14px rgba(0,0,0,.45);}
 .head.over .logo{color:#fff;}
 .head.over .role{color:rgba(255,255,255,.72);}
 .head.over .menu a,.head.over .menu button,.head.over .lang button{color:rgba(255,255,255,.72);}
