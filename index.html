@@ -331,9 +331,9 @@ function tileHTML(w,i){
     '<div class="tt">'+(a?'<small>'+esc(a)+'</small>':'')+esc(b)+'<em>'+w.year+'</em></div></a>';
 }
 
-/* порядок в «Все работы»: кино → реклама → клипы → шоурил */
+/* порядок в «Все работы»: клипы → реклама → кино → шоурил */
 function allOrder(){
-  const rank = {film:0, ad:1, clip:2, action:3};
+  const rank = {clip:0, ad:1, film:2, action:3};
   return WORKS.map((w,i)=>i).sort((a,b)=>(rank[WORKS[a].cat] ?? 9) - (rank[WORKS[b].cat] ?? 9) || a - b);
 }
 function heroSrc(){
