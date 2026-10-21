@@ -320,7 +320,7 @@ const T = {
    ============================================================ */
 const $ = s => document.querySelector(s);
 const view = $('#view');
-let lang = (navigator.language||'').slice(0,2)==='ru' ? 'ru' : 'en';
+let lang = 'ru';   // по умолчанию русская версия; выбор EN запоминается в браузере
 try{ const s = localStorage.getItem('lang'); if(s) lang = s; }catch(e){}
 
 const ROUTES = {
