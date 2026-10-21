@@ -82,7 +82,7 @@ main.fade{opacity:0;}
 /* ============================================================
    О РЕЖИССЁРЕ
    ============================================================ */
-.about{max-width:1100px;margin:0 auto;padding:60px 20px 90px;display:grid;grid-template-columns:5fr 4fr;gap:clamp(30px,6vw,90px);align-items:start;}
+.about{max-width:1100px;margin:0 auto;padding:60px 20px 60px;display:grid;grid-template-columns:5fr 4fr;gap:clamp(30px,6vw,90px);align-items:start;}
 .about.nophoto{grid-template-columns:minmax(0,560px);justify-content:center;}
 .gal{position:relative;aspect-ratio:4/5;overflow:hidden;background:#f2f2f2;outline-offset:4px;}
 .gal-track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab;overscroll-behavior-x:contain;}
@@ -102,6 +102,14 @@ main.fade{opacity:0;}
 .cont span{width:96px;flex:none;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);padding-top:3px;}
 .cont a{transition:color .3s;}
 .cont a:hover{color:var(--mute);}
+
+/* награды (лавры) */
+.awards{max-width:1100px;margin:0 auto;padding:0 20px 100px;}
+.awards h3{margin:0 0 26px;padding-top:34px;border-top:1px solid var(--line);font-size:12px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;}
+.awards-row{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,2vw,28px);align-items:center;}
+.awards-row img{width:100%;height:auto;display:block;}
+@media(max-width:900px){.awards-row{grid-template-columns:repeat(3,1fr);gap:18px;}}
+@media(max-width:560px){.awards-row{grid-template-columns:repeat(2,1fr);gap:14px 10px;}}
 
 /* ============================================================
    ПОДВАЛ
@@ -214,6 +222,14 @@ footer a:hover{color:var(--mute);}
 const SITE = {
   email: 'ilyashpota@gmail.com',
   phone: '+7 995 509-96-84',
+  // Награды (лавры) внизу страницы «О режиссёре». alt — подпись для скринридеров.
+  awards: [
+    {src:'media/awards/rome-2023.png',            alt:'Best Action Music Video — Rome Music Video Awards 2023'},
+    {src:'media/awards/la-2023.png',              alt:'Best in Show — Los Angeles Music Video Awards 2023'},
+    {src:'media/awards/paris-pama-2023.png',      alt:'Best Music Video — Paris Art and Movie Awards, PAMA 2023'},
+    {src:'media/awards/imva-production-2024.png', alt:'Best Production — International Music Video Awards 2024'},
+    {src:'media/awards/imva-action-2024.png',     alt:'Best Action Music Video — International Music Video Awards 2024'}
+  ],
   // Фото для страницы «О режиссёре» (листаются). pos — точка фокуса при обрезке кадра.
   photos: [
     {src:'media/photo-1.jpg', pos:'38% 28%'},
@@ -289,7 +305,7 @@ const WORKS = [
 const T = {
   ru:{
     clip:'Клипы', ad:'Реклама', film:'Кино', reel:'Шоурил', about:'О режиссёре',
-    all:'Все работы', prev:'Назад', next:'Далее', load:'Загрузка',
+    all:'Все работы', prev:'Назад', next:'Далее', load:'Загрузка', awards:'Награды',
     sub:'Режиссёр, сценарист',
     lead:'Снимаю то, что сложно снять: <strong>экшн, каскадёров и спецэффекты</strong> — так, чтобы это работало на историю, а не на хронометраж.',
     bio:[
@@ -303,7 +319,7 @@ const T = {
   },
   en:{
     clip:'Music videos', ad:'Commercials', film:'Film', reel:'Showreel', about:'About',
-    all:'All works', prev:'Prev', next:'Next', load:'Loading',
+    all:'All works', prev:'Prev', next:'Next', load:'Loading', awards:'Awards',
     sub:'Director, screenwriter',
     lead:'I shoot what’s hard to shoot: <strong>action, stunts and effects</strong> — built to serve the story, not the running time.',
     bio:[
@@ -410,6 +426,11 @@ function initGallery(){
   tr.addEventListener('pointerup', end); tr.addEventListener('pointercancel', end);
   g.addEventListener('keydown', e=>{ if(e.key==='ArrowRight'){ e.preventDefault(); to(idx()+1); } if(e.key==='ArrowLeft'){ e.preventDefault(); to(idx()-1); } });
 }
+function awardsHTML(){
+  const a = SITE.awards; if(!a || !a.length) return '';
+  return '<section class="awards"><h3>'+T[lang].awards+'</h3><div class="awards-row">'+
+    a.map(x=>'<img src="'+x.src+'" alt="'+esc(x.alt)+'" loading="lazy">').join('')+'</div></section>';
+}
 function renderAbout(){
   const t = T[lang];
   const photo = SITE.photos && SITE.photos.length ? galleryHTML() : '';
@@ -419,7 +440,7 @@ function renderAbout(){
       '<li><span>'+t.mail+'</span><a href="mailto:'+SITE.email+'">'+SITE.email+'</a></li>'+
       '<li><span>'+t.phone+'</span><a href="tel:'+SITE.phone.replace(/[^+\d]/g,'')+'">'+SITE.phone+'</a></li>'+
       SITE.links.map(l=>'<li><span>'+l.label+'</span><a href="'+l.url+'" target="_blank" rel="noopener">'+l.url.replace(/^https?:\/\/(www\.)?/,'')+'</a></li>').join('')+
-    '</ul></div></div>';
+    '</ul></div></div>'+awardsHTML();
 }
 
 let io;
