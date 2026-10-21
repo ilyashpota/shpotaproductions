@@ -179,9 +179,9 @@ footer a:hover{color:var(--mute);}
   <a class="brand" href="#/"><span class="logo" id="logo">Илья Шпота</span><span class="role" id="role"></span></a>
   <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
   <ul class="menu" id="menu">
+    <li><a href="#/film" data-r="film" data-i="film"></a></li>
     <li><a href="#/musicvideos" data-r="musicvideos" data-i="clip"></a></li>
     <li><a href="#/commercials" data-r="commercials" data-i="ad"></a></li>
-    <li><a href="#/film" data-r="film" data-i="film"></a></li>
     <li><button class="lk" id="reelBtn" data-i="reel"></button></li>
     <li><a href="#/about" data-r="about" data-i="about"></a></li>
     <li class="lang"><button id="ru" aria-pressed="true">RU</button><button id="en" aria-pressed="false">EN</button></li>
@@ -331,9 +331,9 @@ function tileHTML(w,i){
     '<div class="tt">'+(a?'<small>'+esc(a)+'</small>':'')+esc(b)+'<em>'+w.year+'</em></div></a>';
 }
 
-/* порядок в «Все работы»: клипы → реклама → кино → шоурил */
+/* порядок в «Все работы»: кино → клипы → реклама → шоурил */
 function allOrder(){
-  const rank = {clip:0, ad:1, film:2, action:3};
+  const rank = {film:0, clip:1, ad:2, action:3};
   return WORKS.map((w,i)=>i).sort((a,b)=>(rank[WORKS[a].cat] ?? 9) - (rank[WORKS[b].cat] ?? 9) || a - b);
 }
 function heroSrc(){
