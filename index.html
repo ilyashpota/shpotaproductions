@@ -86,12 +86,10 @@ main.fade{opacity:0;}
 .gal-track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab;overscroll-behavior-x:contain;}
 .gal-track::-webkit-scrollbar{display:none;}
 .gal-track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:center;scroll-snap-stop:always;user-select:none;-webkit-user-drag:none;}
-.gal-btn{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.88);color:#000;font-size:26px;line-height:1;display:grid;place-items:center;padding-bottom:3px;opacity:0;transition:opacity .3s,background .3s;}
-.gal-btn.prev{left:12px;}.gal-btn.next{right:12px;}
-.gal:hover .gal-btn,.gal:focus-within .gal-btn{opacity:1;}
-.gal-btn:hover{background:#fff;}
-@media(hover:none){.gal-btn{opacity:.85;width:38px;height:38px;font-size:22px;}}
-.gal-count{position:absolute;left:14px;bottom:12px;font-size:12px;letter-spacing:.14em;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6);pointer-events:none;}
+.gal-bar{display:flex;align-items:center;gap:14px;margin-top:12px;}
+.gal-btn{width:34px;height:34px;display:grid;place-items:center;font-size:20px;line-height:1;color:#000;border:1px solid var(--line);border-radius:50%;transition:background .3s,color .3s,border-color .3s;}
+.gal-btn:hover{background:#000;color:#fff;border-color:#000;}
+.gal-count{font-size:12px;letter-spacing:.16em;color:var(--mute);min-width:44px;text-align:center;}
 .about .tx p{font-size:15px;line-height:22px;margin-bottom:18px;}
 .about .tx p strong{font-weight:600;}
 .about .lead{font-size:22px !important;line-height:28px !important;font-weight:300;margin-bottom:26px !important;}
@@ -390,10 +388,9 @@ function renderCat(cat){
 }
 function galleryHTML(){
   const ph = SITE.photos, many = ph.length > 1;
-  return '<div class="gal" id="gal" tabindex="0" aria-roledescription="carousel" aria-label="'+(lang==='ru'?'Фотографии':'Photos')+'">'+
-    '<div class="gal-track" id="galTrack">'+ph.map(p=>'<img src="'+p.src+'" alt="" draggable="false" style="object-position:'+(p.pos||'50% 30%')+'">').join('')+'</div>'+
-    (many ? '<button class="gal-btn prev" id="galPrev" aria-label="'+(lang==='ru'?'Назад':'Previous')+'">‹</button><button class="gal-btn next" id="galNext" aria-label="'+(lang==='ru'?'Далее':'Next')+'">›</button>'+
-            '<div class="gal-count" id="galCount">1 / '+ph.length+'</div>' : '')+
+  return '<div class="galw"><div class="gal" id="gal" tabindex="0" aria-roledescription="carousel" aria-label="'+(lang==='ru'?'Фотографии':'Photos')+'">'+
+    '<div class="gal-track" id="galTrack">'+ph.map(p=>'<img src="'+p.src+'" alt="" draggable="false" style="object-position:'+(p.pos||'50% 30%')+'">').join('')+'</div></div>'+
+    (many ? '<div class="gal-bar"><button class="gal-btn" id="galPrev" aria-label="'+(lang==='ru'?'Назад':'Previous')+'">←</button><span class="gal-count" id="galCount">1 / '+ph.length+'</span><button class="gal-btn" id="galNext" aria-label="'+(lang==='ru'?'Далее':'Next')+'">→</button></div>' : '')+
   '</div>';
 }
 function initGallery(){
