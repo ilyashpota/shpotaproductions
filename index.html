@@ -202,7 +202,7 @@ footer a:hover{color:var(--mute);}
   <a class="brand" href="#/" aria-label="Илья Шпота"><span class="bt"><span class="logo" id="logo">Илья Шпота</span><span class="role" id="role"></span></span></a>
   <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
   <ul class="menu" id="menu">
-    <li><a href="#/film" data-r="film" data-i="film"></a></li>
+    <li><a href="#/films" data-r="films" data-i="film"></a></li>
     <li><a href="#/musicvideos" data-r="musicvideos" data-i="clip"></a></li>
     <li><a href="#/commercials" data-r="commercials" data-i="ad"></a></li>
     <li><button class="lk" id="reelBtn" data-i="reel"></button></li>
@@ -329,7 +329,7 @@ const T = {
     none:'Видео пока недоступно', empty:'Здесь пока пусто'
   },
   en:{
-    clip:'Music videos', ad:'Commercials', film:'Film', reel:'Showreel', about:'About',
+    clip:'Music videos', ad:'Commercials', film:'Films', reel:'Showreel', about:'About',
     all:'All works', prev:'Prev', next:'Next', load:'Loading', awards:'Awards',
     sub:'Director, screenwriter',
     lead:'I shoot what’s hard to shoot: <strong>action, stunts and effects</strong> — built to serve the story, not the running time.',
@@ -356,10 +356,12 @@ const ROUTES = {
   '':            {title:null, cat:null},
   'musicvideos': {title:'clip', cat:'clip'},
   'commercials': {title:'ad',   cat:'ad'},
-  'film':        {title:'film', cat:'film'},
+  'films':       {title:'film', cat:'film'},
   'about':       {title:'about'}
 };
 let route = '';
+const ALIAS = {film:'films'};   // старая ссылка #/film → #/films
+const routeOf = hash => { let n = (hash.replace(/^#\/?/,'') || '').split('?')[0]; n = ALIAS[n] || n; return ROUTES[n] ? n : ''; };
 
 const big = (u,w) => (u||'').replace(/-d_\d+/, '-d_'+(w||960));
 const split = s => { const i = s.indexOf(' — '); return i<0 ? ['', s] : [s.slice(0,i), s.slice(i+3)]; };
@@ -485,8 +487,7 @@ function paint(){
 }
 
 function go(){
-  const next = (location.hash.replace(/^#\/?/,'') || '').split('?')[0];
-  route = ROUTES[next] ? next : '';
+  route = routeOf(location.hash);
   closeMenu();
   view.classList.add('fade');
   setTimeout(()=>{ paint(); scrollTo(0,0); view.classList.remove('fade'); }, 200);
@@ -523,7 +524,7 @@ $('#reelBtn').onclick = ()=>{ const i = WORKS.findIndex(w=>w.cat==='action'); if
 
 /* ---------- старт ---------- */
 (function(){
-  const next = (location.hash.replace(/^#\/?/,'') || '').split('?')[0]; route = ROUTES[next] ? next : '';
+  route = routeOf(location.hash);
   paint();
 })();
 </script>
