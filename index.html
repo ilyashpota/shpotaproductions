@@ -103,6 +103,11 @@ main.fade{opacity:0;}
 .cont a{transition:color .3s;}
 .cont a:hover{color:var(--mute);}
 
+/* полоса наград на главной */
+.awards-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px clamp(22px,3.4vw,56px);padding:46px 20px 12px;}
+.awards-strip img{height:clamp(78px,8.4vw,118px);width:auto;display:block;}
+@media(max-width:560px){.awards-strip{gap:14px 20px;padding:34px 16px 6px;}.awards-strip img{height:70px;}}
+
 /* награды (лавры) */
 .awards{max-width:1100px;margin:0 auto;padding:0 20px 100px;}
 .awards h3{margin:0 0 26px;padding-top:34px;border-top:1px solid var(--line);font-size:12px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;}
@@ -224,16 +229,17 @@ const SITE = {
   email: 'ilyashpota@gmail.com',
   phone: '+7 995 509-96-84',
   // Награды (лавры) внизу страницы «О режиссёре». alt — подпись для скринридеров.
+  // home: порядок в полосе на главной (только самые сильные). Остальные — только на странице «О режиссёре».
   awards: [
-    {src:'media/awards/rome-2023.png',            alt:'Best Action Music Video — Rome Music Video Awards 2023'},
-    {src:'media/awards/la-2023.png',              alt:'Best in Show — Los Angeles Music Video Awards 2023'},
-    {src:'media/awards/paris-pama-2023.png',      alt:'Best Music Video — Paris Art and Movie Awards, PAMA 2023'},
+    {src:'media/awards/timvf-director-2023.png',  alt:'Best Director — Toronto International Music Video Festival (TIMVF) 2023', wide:true, home:1},
+    {src:'media/awards/la-2023.png',              alt:'Best in Show — Los Angeles Music Video Awards 2023', home:2},
+    {src:'media/awards/rome-2023.png',            alt:'Best Action Music Video — Rome Music Video Awards 2023', home:3},
+    {src:'media/awards/imva-production-2024.png', alt:'Best Production — International Music Video Awards 2024', home:4},
+    {src:'media/awards/paris-pama-2023.png',      alt:'Best Music Video — Paris Art and Movie Awards, PAMA 2023', home:5},
+    {src:'media/awards/imva-action-2024.png',     alt:'Best Action Music Video — International Music Video Awards 2024'},
     {src:'media/awards/la-action-ff-2023.png',    alt:'Official Selection — Los Angeles Action Film Festival 2023'},
     {src:'media/awards/munich-2023.png',          alt:'Official Selection — Munich Music Video Awards 2023'},
-    {src:'media/awards/imva-production-2024.png', alt:'Best Production — International Music Video Awards 2024'},
-    {src:'media/awards/imva-action-2024.png',     alt:'Best Action Music Video — International Music Video Awards 2024'},
-    {src:'media/awards/iwfa-2024.png',            alt:'Official Selection — International World Film Awards 2024'},
-    {src:'media/awards/timvf-director-2023.png',  alt:'Best Director — Toronto International Music Video Festival (TIMVF) 2023', wide:true}
+    {src:'media/awards/iwfa-2024.png',            alt:'Official Selection — International World Film Awards 2024'}
   ],
   // Фото для страницы «О режиссёре» (листаются). pos — точка фокуса при обрезке кадра.
   photos: [
@@ -380,6 +386,7 @@ function renderHome(){
     '<video class="hs-video" id="hsVid" poster="media/hero.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true">'+'<source src="'+heroSrc()+'" type="video/mp4"><source src="media/hero.webm" type="video/webm"></video>'+
     '<div class="hs-shade"></div>'+
     '<button class="hs-all" id="hsAll">'+T[lang].all+'</button></section>'+
+    awardsStripHTML()+
     '<div id="all"><div class="page-title">'+T[lang].all+'</div><div class="tiles">'+allOrder().map(i=>tileHTML(WORKS[i],i)).join('')+'</div></div>';
 }
 
@@ -435,6 +442,10 @@ function awardsHTML(){
   const a = SITE.awards; if(!a || !a.length) return '';
   return '<section class="awards"><h3>'+T[lang].awards+'</h3><div class="awards-row">'+
     a.map(x=>'<img'+(x.wide?' class="wide"':'')+' src="'+x.src+'" alt="'+esc(x.alt)+'" loading="lazy">').join('')+'</div></section>';
+}
+function awardsStripHTML(){
+  const a = (SITE.awards||[]).filter(x=>x.home).sort((p,q)=>p.home-q.home); if(!a.length) return '';
+  return '<section class="awards-strip" aria-label="'+T[lang].awards+'">'+a.map(x=>'<img'+(x.wide?' class="wide"':'')+' src="'+x.src+'" alt="'+esc(x.alt)+'" loading="lazy">').join('')+'</section>';
 }
 function renderAbout(){
   const t = T[lang];
