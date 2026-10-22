@@ -352,7 +352,7 @@ const view = $('#view');
 let lang = 'ru';   // по умолчанию русская версия; выбор EN запоминается в браузере
 try{ const s = localStorage.getItem('lang'); if(s) lang = s; }catch(e){}
 /* ?lang=ru или ?lang=en в адресе всегда главнее (например, редирект с ilyashpota.ru → ...com/?lang=ru) */
-try{ const q = new URLSearchParams(location.search).get('lang'); if(q==='ru' || q==='en'){ lang = q; try{ localStorage.setItem('lang', q); }catch(e){} } }catch(e){}
+try{ const q = (new URLSearchParams(location.search).get('lang') || '').slice(0,2).toLowerCase(); if(q==='ru' || q==='en'){ lang = q; try{ localStorage.setItem('lang', q); }catch(e){} } }catch(e){}   // slice: терпим хвост вида ?lang=ru/
 
 const ROUTES = {
   '':            {title:null, cat:null},
