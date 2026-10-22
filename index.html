@@ -78,16 +78,16 @@ main.fade{opacity:0;}
 .tiles{display:grid;grid-template-columns:1fr 1fr;}
 .tile{position:relative;display:block;width:100%;aspect-ratio:1/.56;overflow:hidden;background:#111;cursor:pointer;text-align:center;}
 .tile .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.2,.7,.3,1);}
-.tile::before{content:'';position:absolute;inset:0;z-index:1;background:rgba(0,0,0,.3);transition:background .5s;}
+.tile::before{content:'';position:absolute;inset:0;z-index:1;background:rgba(0,0,0,0);transition:background .5s;}   /* в покое — без затемнения, цвета постеров родные */
 .tile .tt{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:#fff;font-size:20px;line-height:1;letter-spacing:.04em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s;}
 .tile .tt small{display:block;margin-bottom:10px;font-size:12px;letter-spacing:.24em;font-weight:300;opacity:.85;}
 .tile .tt em{display:block;margin-top:12px;font-style:normal;font-size:11px;letter-spacing:.24em;font-weight:300;opacity:.8;}
 @media(hover:hover){
   .tile:hover .bg,.tile:focus-visible .bg{transform:scale(1.06);}
-  .tile:hover::before,.tile:focus-visible::before{background:rgba(0,0,0,.5);}
+  .tile:hover::before,.tile:focus-visible::before{background:rgba(0,0,0,.45);}
   .tile:hover .tt,.tile:focus-visible .tt{opacity:1;transform:none;}
 }
-@media(hover:none){.tile .tt{opacity:1;transform:none;}.tile::before{background:rgba(0,0,0,.38);}}
+@media(hover:none){.tile .tt{opacity:1;transform:none;justify-content:flex-end;align-items:flex-start;text-align:left;padding:16px;}.tile::before{background:linear-gradient(0deg,rgba(0,0,0,.62) 0,rgba(0,0,0,0) 48%);}}   /* на телефоне: подпись внизу слева, затемнён только низ */
 .tile.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s;}
 .tile.rv.in{opacity:1;transform:none;}
 
