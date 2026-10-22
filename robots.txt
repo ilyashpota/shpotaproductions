@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ilyashpota.com/sitemap.xml
