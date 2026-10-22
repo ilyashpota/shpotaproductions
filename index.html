@@ -364,7 +364,7 @@ const T = {
    ============================================================ */
 const $ = s => document.querySelector(s);
 const view = $('#view');
-let lang = 'en';   // по умолчанию английская версия (ilyashpota.com); русская — через ilyashpota.ru или ?lang=ru; выбор языка запоминается в браузере
+let lang = ((navigator.languages && navigator.languages[0]) || navigator.language || '').slice(0,2).toLowerCase() === 'ru' ? 'ru' : 'en';   // язык по браузеру: русский → RU, иначе EN; выбор в шапке и ?lang=ru|en главнее
 try{ const s = localStorage.getItem('lang'); if(s) lang = s; }catch(e){}
 /* ?lang=ru или ?lang=en в адресе всегда главнее (например, редирект с ilyashpota.ru → ...com/?lang=ru) */
 try{ const q = (new URLSearchParams(location.search).get('lang') || '').slice(0,2).toLowerCase(); if(q==='ru' || q==='en'){ lang = q; try{ localStorage.setItem('lang', q); }catch(e){} } }catch(e){}   // slice: терпим хвост вида ?lang=ru/
