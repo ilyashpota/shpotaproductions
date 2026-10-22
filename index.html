@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<base href="/">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ilya Shpota — Director, Screenwriter</title>
 <meta name="description" content="Director and screenwriter. Music videos, commercials and film.">
@@ -214,14 +215,14 @@ footer a:hover{color:var(--mute);}
 <body>
 
 <header class="head" id="head">
-  <a class="brand" href="#/" aria-label="Илья Шпота"><span class="bt"><span class="logo" id="logo">Илья Шпота</span><span class="role" id="role"></span></span></a>
+  <a class="brand" href="/" data-nav aria-label="Илья Шпота"><span class="bt"><span class="logo" id="logo">Илья Шпота</span><span class="role" id="role"></span></span></a>
   <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
   <ul class="menu" id="menu">
-    <li><a href="#/films" data-r="films" data-i="film"></a></li>
-    <li><a href="#/musicvideos" data-r="musicvideos" data-i="clip"></a></li>
-    <li><a href="#/commercials" data-r="commercials" data-i="ad"></a></li>
+    <li><a href="/films/" data-nav data-r="films" data-i="film"></a></li>
+    <li><a href="/music-videos/" data-nav data-r="musicvideos" data-i="clip"></a></li>
+    <li><a href="/commercials/" data-nav data-r="commercials" data-i="ad"></a></li>
     <li><button class="lk" id="reelBtn" data-i="reel"></button></li>
-    <li><a href="#/about" data-r="about" data-i="about"></a></li>
+    <li><a href="/about/" data-nav data-r="about" data-i="about"></a></li>
     <li class="lang"><button id="ru" aria-pressed="true">RU</button><button id="en" aria-pressed="false">EN</button></li>
   </ul>
 </header>
@@ -379,8 +380,20 @@ const ROUTES = {
   'about':       {title:'about'}
 };
 let route = '';
-const ALIAS = {film:'films'};   // старая ссылка #/film → #/films
-const routeOf = hash => { let n = (hash.replace(/^#\/?/,'') || '').split('?')[0]; n = ALIAS[n] || n; return ROUTES[n] ? n : ''; };
+const ALIAS = {film:'films'};   // старые ссылки /#/film → /films/
+/* чистые адреса: / · /films/ · /music-videos/ · /commercials/ · /about/ (на каждый — своя папка с index.html, см. tools/build_pages.py) */
+const SLUG = {films:'films', musicvideos:'music-videos', commercials:'commercials', about:'about'};
+const BYSLUG = Object.fromEntries(Object.entries(SLUG).map(([k,v])=>[v,k]));
+const pathFor = k => (k && SLUG[k]) ? '/'+SLUG[k]+'/' : '/';
+function routeFromLocation(){
+  const hh = location.hash;
+  if(hh.length > 1 && /^#\//.test(hh)){            // старая ссылка вида /#/films → переписываем адрес на чистый
+    let n = hh.replace(/^#\/?/,'').split('?')[0]; n = ALIAS[n] || n;
+    if(ROUTES[n] !== undefined){ try{ history.replaceState(null,'',pathFor(n)+location.search); }catch(e){} return n; }
+  }
+  const seg = location.pathname.replace(/\/+$/,'').split('/').pop();
+  return BYSLUG[seg] || (seg && ROUTES[seg] ? seg : '');
+}
 
 const big = (u,w) => (u||'').replace(/-d_\d+/, '-d_'+(w||960));
 const split = s => { const i = s.indexOf(' — '); return i<0 ? ['', s] : [s.slice(0,i), s.slice(i+3)]; };
@@ -506,12 +519,21 @@ function paint(){
 }
 
 function go(){
-  route = routeOf(location.hash);
+  route = routeFromLocation();
   closeMenu();
   view.classList.add('fade');
   setTimeout(()=>{ paint(); scrollTo(0,0); view.classList.remove('fade'); }, 200);
 }
-addEventListener('hashchange', go);
+addEventListener('popstate', go);
+/* клики по ссылкам меню — без перезагрузки страницы, но с чистым адресом */
+document.addEventListener('click', e=>{
+  const a = e.target.closest('a[data-nav]'); if(!a) return;
+  if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;   // «открыть в новой вкладке» работает как обычно
+  e.preventDefault(); closeMenu();
+  const url = a.getAttribute('href');
+  if(url === location.pathname){ scrollTo({top:0,behavior:'smooth'}); return; }
+  history.pushState(null,'',url); go();
+});
 
 /* ---------- меню ---------- */
 const menu = $('#menu'), burger = $('#burger');
@@ -543,7 +565,7 @@ $('#reelBtn').onclick = ()=>{ const i = WORKS.findIndex(w=>w.cat==='action'); if
 
 /* ---------- старт ---------- */
 (function(){
-  route = routeOf(location.hash);
+  route = routeFromLocation();
   paint();
 })();
 </script>

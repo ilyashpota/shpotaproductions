@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<base href="/">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — Ilya Shpota</title>
+<meta name="description" content="Director and screenwriter. Music videos, commercials and film.">
+<link rel="canonical" href="https://ilyashpota.com/about/">
+<!-- Превью ссылки на ilyashpota.com — английское. Русское превью для ilyashpota.ru: страница ru/index.html -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Ilya Shpota">
+<meta property="og:title" content="About — Ilya Shpota">
+<meta property="og:description" content="Music videos, commercials and film.">
+<meta property="og:url" content="https://ilyashpota.com/about/">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:image" content="https://ilyashpota.com/media/og-works-en.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ilya Shpota — Director, Screenwriter">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About — Ilya Shpota">
+<meta name="twitter:description" content="Music videos, commercials and film.">
+<meta name="twitter:image" content="https://ilyashpota.com/media/og-works-en.jpg">
+<link rel="icon" href="media/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap&subset=cyrillic,latin" rel="stylesheet">
+<style>
+/* ============================================================
+   ТОКЕНЫ
+   ============================================================ */
+:root{
+  --bg:#fff; --ink:#000; --mute:#858585; --line:#e6e6e6;
+  --font:'Jost','Futura','Century Gothic','Trebuchet MS',sans-serif;
+  --head:100px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:400;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+img{display:block;max-width:100%;}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px;}
+
+/* ============================================================
+   ШАПКА (как у образца: белая, фиксированная, меню справа)
+   ============================================================ */
+.head{position:fixed;inset:0 0 auto 0;z-index:40;height:var(--head);background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px;}
+.brand{display:flex;align-items:center;}
+.brand .bt{display:flex;flex-direction:column;gap:8px;}
+.role{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);line-height:1;white-space:nowrap;}
+.logo{font-size:30px;font-weight:600;letter-spacing:2px;text-transform:uppercase;line-height:1;white-space:nowrap;}
+.menu{display:flex;align-items:center;list-style:none;}
+.menu li{padding:0 15px;}
+.menu li:last-child{padding-right:0;}
+.menu a,.menu button{position:relative;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--mute);transition:color .3s ease-in-out;}
+.menu a::after,.menu button.lk::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--ink);opacity:0;transition:opacity .3s,bottom .3s;}
+@media(hover:hover){.menu a:hover,.menu button:hover{color:var(--ink);}.menu a:hover::after,.menu button.lk:hover::after{opacity:1;bottom:-3px;}}
+.menu a.on{color:var(--ink);font-weight:600;}
+.lang{display:flex;gap:6px;margin-left:10px;}
+.lang button{font-size:12px;letter-spacing:2px;color:var(--mute);}
+.lang button[aria-pressed="true"]{color:var(--ink);font-weight:600;}
+.burger{display:none;width:34px;height:34px;position:relative;}
+.burger i{position:absolute;left:5px;right:5px;height:1px;background:var(--ink);transition:.3s;}
+.burger i:nth-child(1){top:11px}.burger i:nth-child(2){top:17px}.burger i:nth-child(3){top:23px}
+.burger.x i:nth-child(1){top:17px;transform:rotate(45deg)}.burger.x i:nth-child(2){opacity:0}.burger.x i:nth-child(3){top:17px;transform:rotate(-45deg)}
+
+main{padding-top:var(--head);min-height:100vh;opacity:1;transition:opacity .2s ease-in-out;}
+main.fade{opacity:0;}
+
+/* ============================================================
+   ГЛАВНАЯ: имя + плитки
+   ============================================================ */
+
+/* плитки — встык, 2 колонки, 0.56 как в образце */
+.tiles{display:grid;grid-template-columns:1fr 1fr;}
+.tile{position:relative;display:block;width:100%;aspect-ratio:1/.56;overflow:hidden;background:#111;cursor:pointer;text-align:center;}
+.tile .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .9s cubic-bezier(.2,.7,.3,1);}
+.tile::before{content:'';position:absolute;inset:0;z-index:1;background:rgba(0,0,0,0);transition:background .5s;}   /* в покое — без затемнения, цвета постеров родные */
+.tile .tt{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:#fff;font-size:20px;line-height:1;letter-spacing:.04em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:opacity .45s,transform .45s;}
+.tile .tt small{display:block;margin-bottom:10px;font-size:12px;letter-spacing:.24em;font-weight:300;opacity:.85;}
+.tile .tt em{display:block;margin-top:12px;font-style:normal;font-size:11px;letter-spacing:.24em;font-weight:300;opacity:.8;}
+@media(hover:hover){
+  .tile:hover .bg,.tile:focus-visible .bg{transform:scale(1.06);}
+  .tile:hover::before,.tile:focus-visible::before{background:rgba(0,0,0,.45);}
+  .tile:hover .tt,.tile:focus-visible .tt{opacity:1;transform:none;}
+}
+@media(hover:none){.tile .tt{opacity:1;transform:none;justify-content:flex-end;align-items:flex-start;text-align:left;padding:16px;}.tile::before{background:linear-gradient(0deg,rgba(0,0,0,.62) 0,rgba(0,0,0,0) 48%);}}   /* на телефоне: подпись внизу слева, затемнён только низ */
+.tile.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s;}
+.tile.rv.in{opacity:1;transform:none;}
+
+.page-title{padding:44px 20px 36px;text-align:center;font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--mute);}
+.empty{padding:120px 20px;text-align:center;color:var(--mute);letter-spacing:.2em;font-size:12px;text-transform:uppercase;}
+
+/* ============================================================
+   О РЕЖИССЁРЕ
+   ============================================================ */
+.about{max-width:1100px;margin:0 auto;padding:60px 20px 60px;display:grid;grid-template-columns:5fr 4fr;gap:clamp(30px,6vw,90px);align-items:start;}
+.about.nophoto{grid-template-columns:minmax(0,560px);justify-content:center;}
+.gal{position:relative;aspect-ratio:4/5;overflow:hidden;background:#f2f2f2;outline-offset:4px;}
+.gal-track{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;cursor:grab;overscroll-behavior-x:contain;}
+.gal-track::-webkit-scrollbar{display:none;}
+.gal-track img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:center;scroll-snap-stop:always;user-select:none;-webkit-user-drag:none;}
+.gal-bar{display:flex;align-items:center;gap:14px;margin-top:12px;}
+.gal-btn{width:34px;height:34px;display:grid;place-items:center;font-size:20px;line-height:1;color:#000;border:1px solid var(--line);border-radius:50%;transition:background .3s,color .3s,border-color .3s;}
+.gal-btn:hover{background:#000;color:#fff;border-color:#000;}
+.gal-count{font-size:12px;letter-spacing:.16em;color:var(--mute);min-width:44px;text-align:center;}
+.about .tx p{font-size:15px;line-height:22px;margin-bottom:18px;}
+.about .tx p strong{font-weight:600;}
+.about .lead{font-size:22px !important;line-height:28px !important;font-weight:300;margin-bottom:26px !important;}
+.about .tx h3{margin:34px 0 14px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;}
+.cont{list-style:none;}
+.cont li{display:flex;gap:16px;padding:9px 0;border-top:1px solid var(--line);font-size:15px;}
+.cont li:last-child{border-bottom:1px solid var(--line);}
+.cont span{width:96px;flex:none;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);padding-top:3px;}
+.cont a{transition:color .3s;}
+.cont a:hover{color:var(--mute);}
+
+/* полоса наград на главной */
+.awards-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:18px clamp(22px,3.4vw,56px);padding:46px 20px 12px;}
+.awards-strip img{height:clamp(78px,8.4vw,118px);width:auto;display:block;}
+@media(max-width:560px){.awards-strip{gap:14px 20px;padding:34px 16px 6px;}.awards-strip img{height:70px;}}
+
+/* награды (лавры) */
+.awards{max-width:1100px;margin:0 auto;padding:0 20px 100px;}
+.awards h3{margin:0 0 26px;padding-top:34px;border-top:1px solid var(--line);font-size:12px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;}
+.awards-row{display:grid;grid-template-columns:repeat(5,1fr);grid-auto-flow:row dense;gap:clamp(14px,2.4vw,34px) clamp(10px,2vw,28px);align-items:center;}
+.awards-row img{width:100%;height:auto;display:block;}
+.awards-row img.wide{grid-column:span 2;}
+@media(max-width:900px){.awards-row{grid-template-columns:repeat(3,1fr);gap:18px;}}
+@media(max-width:560px){.awards-row{grid-template-columns:repeat(2,1fr);gap:14px 10px;}}
+
+/* ============================================================
+   ПОДВАЛ
+   ============================================================ */
+footer{height:50px;display:flex;align-items:center;justify-content:center;margin-top:50px;}
+footer ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;}
+footer li{padding:0 15px;}
+footer a{font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:color .3s;}
+footer a:hover{color:var(--mute);}
+
+/* ============================================================
+   ПОПАП С ВИДЕО
+   ============================================================ */
+.pop{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.92);display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:60px 24px 24px;}
+.pop.on{display:flex;}
+.pop .x{position:absolute;top:18px;right:22px;width:34px;height:34px;}
+.pop .x i{position:absolute;left:2px;right:2px;top:16px;height:2px;background:#fff;transition:background .3s;}
+.pop .x i:first-child{transform:rotate(45deg)}.pop .x i:last-child{transform:rotate(-45deg)}
+.pop .x:hover i{background:#aaa;}
+.pop .vid{width:min(1100px,100%,calc((100vh - 230px) * 16 / 9));aspect-ratio:16/9;background:#000;}
+.pop .vid iframe{width:100%;height:100%;border:0;}
+.pop .none{height:100%;display:grid;place-items:center;color:#aaa;font-size:12px;letter-spacing:.2em;text-transform:uppercase;border:1px solid #333;}
+.pop .cap{width:min(1100px,100%,calc((100vh - 230px) * 16 / 9));color:#fff;}
+.pop .cap .m{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#aaa;}
+.pop .cap .t{margin-top:6px;font-size:clamp(20px,2.4vw,28px);letter-spacing:.04em;text-transform:uppercase;line-height:1.1;}
+.pop .cap .i{margin-top:8px;font-size:13px;line-height:19px;font-weight:300;color:#bbb;white-space:pre-line;max-height:5.8em;overflow:auto;}
+
+
+/* ============================================================
+   ГЕРОЙ: фоновое видео-монтаж на главной
+   ============================================================ */
+.hs{position:relative;height:100vh;height:100svh;margin-top:calc(var(--head) * -1);overflow:hidden;background:#000;color:#fff;}
+.hs-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000 center/cover no-repeat;}
+.hs-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.22) 0,rgba(0,0,0,0) 150px),linear-gradient(0deg,rgba(0,0,0,.22) 0,rgba(0,0,0,0) 110px);pointer-events:none;}
+.hs-all{text-shadow:0 1px 14px rgba(0,0,0,.5);}
+.hs-all{position:absolute;right:20px;bottom:22px;z-index:3;font:400 12px var(--font);letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:6px 0;border-bottom:1px solid transparent;transition:border-color .3s;}
+.hs-all:hover{border-color:#fff;}
+.hs-all::after{content:' ↓';}
+
+#all{scroll-margin-top:var(--head);}
+
+/* прозрачная шапка поверх слайдера */
+.head{transition:background .35s;}
+.head.over{background:transparent;}
+.head.over .logo,.head.over .role,.head.over .menu a,.head.over .menu button,.head.over .lang button{text-shadow:0 1px 14px rgba(0,0,0,.45);}
+.head.over .logo{color:#fff;}
+.head.over .role{color:rgba(255,255,255,.72);}
+.head.over .menu a,.head.over .menu button,.head.over .lang button{color:rgba(255,255,255,.72);}
+.head.over .menu a.on,.head.over .lang button[aria-pressed="true"]{color:#fff;}
+.head.over .menu a::after,.head.over .menu button.lk::after{background:#fff;}
+@media(hover:hover){.head.over .menu a:hover,.head.over .menu button:hover{color:#fff;}}
+.head.over .burger i{background:#fff;}
+
+/* ============================================================
+   АДАПТИВ
+   ============================================================ */
+@media(max-width:900px){
+  .about{grid-template-columns:1fr;}
+}
+@media(max-width:820px){
+  :root{--head:70px;}
+  .logo{font-size:22px;}
+  .head.over .menu a,.head.over .menu button,.head.over .lang button{color:var(--mute);}
+  .head.over .menu a.on,.head.over .lang button[aria-pressed="true"]{color:var(--ink);}
+  .head.over .menu a::after,.head.over .menu button.lk::after{background:var(--ink);}
+  .hs-all{right:16px;bottom:18px;}
+  .brand .bt{gap:6px;}
+  .role{font-size:9px;letter-spacing:.14em;}
+  .burger{display:block;}
+  .menu{position:fixed;top:var(--head);left:0;right:0;flex-direction:column;align-items:flex-start;background:#fff;padding:6px 20px 22px;border-bottom:1px solid var(--line);transform:translateY(-8px);opacity:0;pointer-events:none;transition:.3s;}
+  .menu.open{transform:none;opacity:1;pointer-events:auto;}
+  .menu li{padding:12px 0;}
+  .menu a,.menu button{font-size:14px;}
+  .lang{margin:0;padding-top:6px;}
+  .tiles{grid-template-columns:1fr;}
+  .tile{aspect-ratio:1/.56;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}.tile.rv{opacity:1;transform:none;}html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+<header class="head" id="head">
+  <a class="brand" href="/" data-nav aria-label="Илья Шпота"><span class="bt"><span class="logo" id="logo">Илья Шпота</span><span class="role" id="role"></span></span></a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  <ul class="menu" id="menu">
+    <li><a href="/films/" data-nav data-r="films" data-i="film"></a></li>
+    <li><a href="/music-videos/" data-nav data-r="musicvideos" data-i="clip"></a></li>
+    <li><a href="/commercials/" data-nav data-r="commercials" data-i="ad"></a></li>
+    <li><button class="lk" id="reelBtn" data-i="reel"></button></li>
+    <li><a href="/about/" data-nav data-r="about" data-i="about"></a></li>
+    <li class="lang"><button id="ru" aria-pressed="true">RU</button><button id="en" aria-pressed="false">EN</button></li>
+  </ul>
+</header>
+
+<main id="view"></main>
+
+<footer><ul id="foot"></ul></footer>
+
+<div class="pop" id="pop" role="dialog" aria-modal="true">
+  <button class="x" id="popx" aria-label="Close"><i></i><i></i></button>
+  <div class="vid" id="vid"></div>
+  <div class="cap" id="cap"></div>
+</div>
+
+<script>
+/* ============================================================
+   1. СОДЕРЖИМОЕ — здесь всё, что нужно править.
+   ============================================================ */
+const SITE = {
+  email: 'ilyashpota@gmail.com',
+  phone: '+7 995 509-96-84',
+  // Награды (лавры) внизу страницы «О режиссёре». alt — подпись для скринридеров.
+  // home: порядок в полосе на главной (только самые сильные). Остальные — только на странице «О режиссёре».
+  awards: [
+    {src:'media/awards/timvf-director-2023.png',  alt:'Best Director — Toronto International Music Video Festival (TIMVF) 2023', wide:true, home:1},
+    {src:'media/awards/la-2023.png',              alt:'Best in Show — Los Angeles Music Video Awards 2023', home:2},
+    {src:'media/awards/rome-2023.png',            alt:'Best Action Music Video — Rome Music Video Awards 2023', home:3},
+    {src:'media/awards/imva-production-2024.png', alt:'Best Production — International Music Video Awards 2024', home:4},
+    {src:'media/awards/paris-pama-2023.png',      alt:'Best Music Video — Paris Art and Movie Awards, PAMA 2023', home:5},
+    {src:'media/awards/imva-action-2024.png',     alt:'Best Action Music Video — International Music Video Awards 2024'},
+    {src:'media/awards/la-action-ff-2023.png',    alt:'Official Selection — Los Angeles Action Film Festival 2023'},
+    {src:'media/awards/munich-2023.png',          alt:'Official Selection — Munich Music Video Awards 2023'},
+    {src:'media/awards/iwfa-2024.png',            alt:'Official Selection — International World Film Awards 2024'}
+  ],
+  // Фото для страницы «О режиссёре» (листаются). pos — точка фокуса при обрезке кадра.
+  photos: [
+    {src:'media/photo-1.jpg', pos:'38% 28%'},
+    {src:'media/photo-2.jpg', pos:'50% 30%'},
+    {src:'media/photo-3.jpg', pos:'56% 34%'}
+  ],
+  links: [
+    {label:'Vimeo',    url:'https://vimeo.com/ilyashpota'},
+    {label:'YouTube',  url:'https://www.youtube.com/@ilyashpota'},
+    {label:'Telegram', url:'https://t.me/shpotaproductions'},
+    {label:'VK',       url:'https://vk.com/ilyashpota'}
+  ]
+};
+
+const WORKS = [
+  {cat:"action", vimeo:"1113601671", year:"2025", title:{ru:"Экшн-шоурил 2025", en:"Action showreel 2025"},
+   poster:"https://i.vimeocdn.com/video/2052138250-9a0863c90ba3b2a4ad092cd62411937467bed2216bbbde7b345ceea9af4265c7-d_640",
+   info:"Ilya Shpota - Director Showreel 2025\nEdit by Andrey Yanes"},
+
+  {cat:"film", vimeo:"1169556136", year:"2026", title:{ru:"Ландыши. Вторая весна — трейлер", en:"Landyshi. Second Spring — trailer"},
+   poster:"https://i.vimeocdn.com/video/2128352373-ca62cec914b0d54173954c3280a807416045a27cbe5f7f8a6f9101625cb7c1ad-d_640",
+   info:"Во втором сезоне главную героиню ждут непростые испытания: распад музыкальной группы, захватывающие интриги, борьба за огромное наследство и, главное, поиски мужа Лёхи.\n\nПроизводством сериала «Ландыши. Вторая весна» занимается компания «Всемирные русские студии» совместно с «НМГ Студией» при поддержке АНО «ИРИ», АНО «Таврида.Арт» и контент-студии «Юг. Кино».  \n\nРежиссёр - Илья Шпота\nВ ролях: Ника Здорик, Сергей Городничий, Евгений Коряковский, Ирина Паутова, Денис Степанов, Владимир Тяптушкин, Станислав Белослудцев, Даня Андрущук, Вероника Тимофеева, Иван Алексеев, Иван Архангельский, Арина Савостьянова, Екатерина Эссен, Владислав Чербаев, Александр Гришин, Валерия Ланская, Анна Строк, Александр Яцко, Владимир Стержаков, Евгений Банифатов, Александр Карпиловский, Олеся Яппарова, Екатерина Семина, Дмитрий Блохин, Константин Новиков, Никита Суворов, Аруп Нанди, Михаил Астен, рэпер ST (Александр Степанов)."},
+
+  {cat:"film", vimeo:"1169557989", year:"2026", title:{ru:"Адель — тизер короткометражного фильма", en:"Adele — short film teaser"},
+   poster:"https://i.vimeocdn.com/video/2128353996-adcc4585aabb76be802d8bdf99fc38bbb5291aa3f6a5302d01637d6de0723bd1-d_640",
+   info:""},
+
+  {cat:"ad", vimeo:"953257683", year:"2024", title:{ru:"VK Музыка", en:"VK Music"},
+   poster:"https://i.vimeocdn.com/video/1863540633-2931a791461d334f61fd562f0d409c0d9a5047936760a3db5c7756f2b980bb38-d_640",
+   info:"Реклама для ВК Музыка с участием группой хлеб. \n\nDirector - Ilya Shpota \nCinematography - Mikhail Shishebarov\nProduction Design - Egor Kolyshkin \nEditor - Andrey Yanes\nProducers - Olga Yankevich, Alexander Orlov\nProduction - Bravo November"},
+
+  {cat:"ad", vimeo:"1169551176", year:"2026", title:{ru:"Альфа-Инвестиции", en:"Alfa-Investments"},
+   poster:"https://i.vimeocdn.com/video/2128344436-1e063224992dfc6e2764e978b55263f5df8145e8e80e699fc87c1437bd080cf2-d_640",
+   info:"Реклама для Альфа Банк с участием Басты. \n\nDirector - Ilya Shpota \nCinematography - Mikhail Shishebarov\nProduction Design - Egor Kolyshkin \nEditor - Andrey Yanes\nProducers - Polina Zimmerman\nProduction - Stereotactic"},
+
+  {cat:"ad", vimeo:"1030961478", year:"2024", title:{ru:"Kuper × Ак Барс", en:"Kuper × Ak Bars"},
+   poster:"https://i.vimeocdn.com/video/1951603453-85198008e794867db51be44d1f5e5b84e7402ada1d9085d19d2e07f9f6b5f0a0-d_640",
+   info:"Commercial for kuper.ru and Ak Bars hockey team. \nDirected by Ilya Shpota\nCinematography by Mikhail Shishebarov\nEdit by Andrey Yanes\nProduction Zilant.pro\nKazan 2024"},
+
+  {cat:"clip", vimeo:"987738894", year:"2024", title:{ru:"Рабочий городок — Death", en:"Rabochiy Gorodok — Death"},
+   poster:"https://i.vimeocdn.com/video/1903359691-a9606e8de5aa7d52f2b5b5be676081041527d128cb03083364bf0b5dd5c5382b-d_640",
+   info:"A wedding by Russian gangsters gets interrupted by romantic and deadly vampire couple. \n\n\"Death\" is inspired by films like \"From dusk to Dawn\" and \"Blade\", only with a Russian spin of 90s era.\n\nWriter & Director - Ilya Shpota\nCinematography - Mikhail Shishebarov\nProducers - Anton Kazantsev, Ilya Shpota\nProduction Design - Egor Kolyshkin\nEditor - Andrey Yanes\nExecutive Producers - Ivan Novikov, Ulyana Kabelko\nProduction - Shpota Productions (shpota.ru)"},
+
+  {cat:"clip", vimeo:"983578793", year:"2024", title:{ru:"Рабочий городок — Kill", en:"Rabochiy Gorodok — Kill"},
+   poster:"https://i.vimeocdn.com/video/1898985269-27fd2d2f91b77269b64ee71ce27f48ec3f038dc31b673dd59e0879b8e4d2c880-d_640",
+   info:"A high-ranking mob enforcer follow his boss orders to get his respect, slowly get tired of it and things become ugly which only causes several deaths.\n\nAn action short film, in form of music video, inspired by 80s action films, shot on 16mm film with no VFX, for maximum authenticity.\n\nWriter & Director - Ilya Shpota\nCinematography - Mikhail Shishebarov\nProducers - Anton Kazantsev, Ilya Shpota\nProduction Design - Egor Kolyshkin\nEditor - Andrey Yanes"},
+
+  {cat:"clip", vimeo:"822035159", year:"2023", title:{ru:"Kasseta — Pain Tears Blood", en:"Kasseta — Pain Tears Blood"},
+   poster:"https://i.vimeocdn.com/video/1791688480-e6dc336b325c075d791b9fc41c90ece919b6f2d7d2b9ff684c030d6acb354bf5-d_640",
+   info:"18+\nA band of gangsters is trying to steal a music album from a local mafia boss, but not everything\ngoes according to plan. A short action film for the music artist “Kasseta\", inspired by video games and Hong Kong action movies.\n\nWriter & Director - Ilya Shpota\nCinematography - Mikhail Shishebarov\nProducer - Anton Kazantsev\nProduction Design - Valeria Kataeva\nEditor - Andrey Yanes\nProduction - shpota.productions\n\nStarring:\nKasseta\nSergey Shcherbin\nOleg Fisher\nSqwoz Bab\nBrazilic\nKsenia Dukalis\nThomas Mraz\nDenis Bonus\nEgor Kaldikov\n\nExecutive Producers - Yulia Savitskaya Kristina Bannikova Daria Markina\nPre-production producer - Inna Bakh\nLine Producer - Katerina Skibina\nProducer assistant - Grigorii Sergevchev Ivan Khlebnikov\nArt Department - Aleksandra Zhalnina Elizaveta Achintseva Aleksey Ozolin\nCostume designer - Solomakhina Elizaveta\nAssistant costume designer - Elizaveta Gil, Dmitrii Lisianskii, Matvei Gerasimov\nVFX - Spirit.view Herman Fetisoff Vakhtang Muradyan\nColorist - Mikhail Dirko\nSound Design & Music - Goldxfish\nPoster - Denis Kostrikov\nLogo - Rzhanova Marina\nCredit Art - Shirin Isakova\nStoryboard - Grigory Gonkov\nTech Artist - Nikita Muravich\nProps - Fedor Abakshin\nMake Up - Yulia Raschetova Daria Mezentseva, Ekaterina Stadnikova-Luzina\nGaffer - Konstantin Lirola\nLighting - Daniil Kopylov Georgii Krylov Valerij Belyakov Dmitrij Bojko\n1AD - Yulia Savitskaya Ekaterina Liakina\n2AD - Sergei Сhernov, Uliana Aksenova\n1AC - Ignat Veselov\n2AC - Roman Egorov\n2DOP - Mikhail Loshkarev\nBackstage - Alisa Chepurina\nAdmin Timur Rasulov Vlad Savinkin Alisa Prokofeva\nStunt Сoordinator - Oleg Bodiu\nStuntmen - Sam Batakov Alex Vashchuk Anton Andrienko Konstantin Raskatov Viacheslav\nRyzhkov Stas Derevyanko Sergey Smirnov Alexsey Maksymenkov AdminTimur Rasulov Vlad\nSavinkin Alisa Prokofeva\n\nSpecial thanks\nFULLZHEER, club \"BOUNCE\"\nКухня на районе\nPavel Lilienfield\nIlya Naishuller\nAleksandr Sukachev\nVictor Shpota\nAnna Bai\nSergey Melkom\nDimitris Koutsomitsos\nAntonis Panoris\nIvan Korobkov\nRysbek Bokeev"},
+
+  {cat:"clip", vimeo:"1007101864", year:"2024", title:{ru:"Kasseta — Эйфория", en:"Kasseta — Euphoria"},
+   poster:"https://i.vimeocdn.com/video/1923923842-4e29d51b5a4f4217cf9488901f3517613d9763b982c8840f99b7c7c99b136b8e-d_640",
+   info:"Концепция клипа родилась у режиссера Илье Шпоты во время первого\nпрослушивания трека “Эйфория”: задорный видеоряд, по его замыслу, прославляет\nмузыку как искусство, неподвластное времени. Идею Ильи подхватила продюсерская\nкомпания Versus Pictures, основанная режиссером Ильей Найшуллером, который\nисполнил в видео одну из эпизодических ролей. Также в клипе играют киноактёр Пётр\nСкворцов, диджей и блогер Карина Истомина и профессиональный сноубордист Денис\nБонус. Все герои уловили режиссерский замысел и обогатили видео своим неповторимым\nартистизмом.\n\nРежиссер / Сценарист - Илья Шпота / @ilyashpota\nОператор - Михаил Шишебаров / @misashisha\nХуд. пост. - Валерия Катаева / @ka.rida.ka\nПродюсер - Юлия Савицкая / @ms_savitskaya\nЛинейный продюсеры - Алина Дунаева, Ольга Худошина / @a_dunaeva17 @olgakhudoshinaa\nПродакшн - Versus Pictures www.versuspictures.ru / @versuspictures.ru\n\nКаст:\nПётр Скворцов\nКарина Истомина / @diamond_april\nДенис Бонус / @denisbonus\nТеймур Гасанов / @kasseta____\nИлья Найшуллер / @naishuller\nСергей Щербина / @scherbingold\nЭдуард Чемодаков / @actorchemodakov\nЛюдмила Асланова\nИван Ворошилов / @dopphighplayer\nЯков Хиценко / @yashahits\nОлег Бодю / @actor_bodiu_oleg\nАлександр Монахов\nВячеслав Рыжков\nKlaudia Kain / @klaudia.kain\nГужова Мария / @guzhova_m\nДмитрий Гринчев / @grinch_da\nАлександр Атанов / @a10oneasy\nСтас Шитиков / @stason_satori\nМонтаж - Андрей Янес / @andreyyanes1998\nМузыка - goldxfishmusic / @goldxfishmusic\nХудожественный отдел - Александра Жалнина, Анастасия Новикова\nТехнический художник - Никита Маравич / @artmuravich\nДизайн костюмов - Богдан Шувакин / @bogdan_sstyle\nМакияж - Мария Полежаева\nVFX - Вахтанг Мурадян, Герман Фетисов, Chris Orfanidis / @VahMG @fetisoffg\nЦветокоррекция - Михаил Дирко @dirko.color\nПомощник по Дизайну Костюмов - Шерин Кики\nПомощник По Макияжу - Мария Мерфи, Ирина Ахматова\nГаффер - Bima Dojko / @bimadojko\nОтдел Камеры - Артем Протасов, Михаил Лазарев, Данила Степанов\nFocus Puller - Мария Ростовская / @mglbv\nСвет - Иван Черкасов / @chechechechecheche\nBackstage - Евгений Галимов / @tytwonderboy\nРаскадровка - Григорий Гонков / @grigory_gonkov\nPoster - Damn. S. Daniel, Fares Dem / @damn.s.daniel @fares.dem\nОсобая благодарность: Павел Лилиенфельд, Илья Найшуллер, Александр Сукачев, Марта\nРадаева, Анастасия Вороновская, Сергей Покровский, Антон Лымарев, Юрий Рева, Алексей\nБудовский, Анастасия Гирияк, Влад Шуберт, Noor Bar."},
+
+  {cat:"clip", vimeo:"999499567", year:"2024", title:{ru:"Kasseta — Раз два", en:"Kasseta — Raz Dva"},
+   poster:"https://i.vimeocdn.com/video/1915638768-61558a44486839c4f4d6471358bcae85f9d7cd2e1cf269e9cad9a17deb95c919-d_640",
+   info:"Writer & Director - llya Shpota\nDOP - Mikhail Shishebarov\nProducer - Ivan Novikov\nProduction Designer - Egor Kolyshkin \nEditor - Andrey Yanes\nProduction - Shpota Productions (shpota.ru)\n\nStarring:\nKasseta\nVictor Blud\nYan Toples \nEvgenii Mashkov \nOleg Fisher \nSergey Kuzmin \nDaria Goncharova \nMadina Sanaeva \nArmen Filippov \nRoman Tolkarev \nMaksim Sushko \nAzat Sadotdinov\n\nExecutive Producer - Telman Manafov \nLine producer - Emina Khadzhich \nLine producer - Korablin Rostislav \nLine producer - Grigoriy Sergevchev \nGAZ Producer - Aliya Liya \nShpota Producer - Anton Kazantsev \n1AD - Sergei Pavlov\nVFX - Herman Fetisoff\nColorist - Mikhail Dirko\n2nd DOP - Mikhail Loshkarev\nCamera assistant - Vladimir Orlov \nFocus-puller - Ekaterina Simanova\nP.D. Assistant - Mark Mesherin\nProps - Alexander Enbulaev\nHead of costume department - Irina Timofeeva \nStylist assistant - Svetlana Papakina\nmake-up artist - Anastasiia Kazennova \nmake-up assistant - Anastasia Leschinskaya \nАmake-up assistant - Viktoria Koroz\n\nCasting - Arina Serzhantova\nCasting assistant - Alina Novikova\nLocation - Ray Merilin\n2stLocation - EgorKolumbet\nLight Crew & Dolly Gang - Malchishki\nGaffer - Konstantin Lirola\nGrip's Bima Dojko, Daniil Kopylov, Lyagushin Denis, Yan Kopanev, Alexandr Burakov\nChief Electrician - Georgii Krylov\nKey-Grip - Valeriy Belyakov\nPhotographer - Ivan Shemereko\nFight director - Alexey Maksimenkov\nAdministration - Karina Galyautdinova, Valeriya Latypova \nCamera Rental - Kirillin Camera Rental\n\nSound prod. by @dopefisher , @low_liquid\n\nCast:\nKarina Dammi, Elbek Abdihafizzov, Valeriya Lapytova, Gleb Petrosyan, Rodion Polyah, Anastasiia Mamontova, Albert Timerbaev, Anastasiia Kahischeva, Anastasiia Pehtereva, Daria Sozonova, Anna Strybko, Alexey Takunin, Anastasiia Mulyar, Iliya Zaharenkov\nDmitrii Eremenlo, Daria Goncharova, Inna Komyslyaschaya, Ekaterina Kazachenko, Danila Kislov, Artem Kashlev, Herman Fetisoff\nEduard Arutyunyan, Yurii Li\n\nLocation:\nThe team of the Aglomerat club “Bupas Gym” Boxing Club Special thanks - Denis Poymanov"},
+
+  {cat:"clip", vimeo:"1001804092", year:"2024", title:{ru:"Дмитрий Маликов — Beyond the Mists", en:"Dmitry Malikov — Beyond the Mists"},
+   poster:"https://i.vimeocdn.com/video/1918065949-81d781d7eae56d782bf29f48d58c0e22f7417b2c9b79ada7afb2788f6e91d3f2-d_640",
+   info:"Режиссер\nИлья Шпота\n\nОператор\nШишебаров Михаил Сергеевич\n\nВторой режиссер\nПавлов Сергей Леонидович\n\nПродюсер\nКапш Семён Альбертович\n\nДиректор группы\nИващенко Юрий Юрьевич\n\nГафер\nКарпухин Аркадий Андреевич\n\nОсветители\nБеляев Евгений Геннадьевич\nЕгиазарян Алексей Аркадьевич\nИргизцев Сергей Анатольевич\nОсипов Алексей Игоревич\nГаврилов Евгений Анатольевич\nИванов Виктор Александрович\nХарланцев Дмитрий Эдуардович\nМихалёв Алексей Алексеевич\nИванов Андрей Сергеевич\nПостоенко Александр Александрович\nОвчинников Владимир Сергеевич\n\nАктриса\nКоролькова Юлиана Сергеевна \n\nГадалка\nКурумбус Марина Бурлановна\n\nВолхвы\nРощупкин Егор Павлович\nРощупкин Данила Павлович\nРощупкина Евгения Павловна\n\nАссистент оператора\nОрлова Инесса Дмитриевна\n\nАссистент продюсера Дмитрия Маликова\nБолдырева Екатерина Александровна\n\nГрим\nГордеева Ольга Владимировна\nПодмогова Ирина Юрьевна \nНовикова Дина Муратовна\n\nКостюм\nКлименюк Елена Владимировна\nАртамонова Анна Юрьевна\nТарасова Наталья Евгеньевна\nДитрих Светлана Константиновна\nЧубарова Альбина Дмитриевна\nАлипова Вера Александровна\n\nМузыканты\nРахманкулов Галимджан Сабиржанович\nГришаев Евгений Викторович\n\nПеркуссии\nNorlan Maturell Rodriguez\n\nФотограф\nMaria Von May \n\nХудожник-постановщик\nКолышкин Егор Дмитриевич\n \nПостановщики\nКисилица Бронислав Богданович \nЕнбулаев Александр Викторович \nСелезнев Василий Сергеевич\nГлушак Иван Витальевич\nСимонов Александр\nКисилица Бронислав Богданович \nЕнбулаев Александр Викторович \nАлэн Шабан Наемович \nВагуро Руслан Александрович \nАнурьев Максим Владимирович \nЗавьялов Петр Геннадьевич \nУстюхин Андрей Михайлович \nГайворонский Денис Сергеевич \nСимонов Александр Михайлович \nТер-Акопян Гурген Эдуардович \nСтефанюк Роман \nЗахаров Андрей Юрьевич\nСироткин Пётр Валерьевич \nВетчинин Павел Владимирович \nМещерин Марк Александрович \nСелезнев Василий Сергеевич \nСухачев Михаил Юрьевич \nСлободяник Николай Сергеевич \nФомин Кирилл Сергеевич\nЛитвинова Елена Геннадьевна\n\nМеханики камеры\nШумилин Дмитрий Андреевич\nЕрилин Александр Николаевич\n\nМеханики долли\nКоровиченко Андрей Васильевич\nКаровичеснко Максим Андреевич\nНарышкин Павел Александрович\n\nМонтаж\nКазанцев Антон Сергеевич\nЯнес Андрей Александрович \nЯнес Анна Владимировна\n\nХэлперы\nЗасеев Марат Тамерланович\nСиваков Матвей Сергеевич\nНестеренко Артур Алексеевич \nСечкин Владимир Юрьевич\n\nБуфет\nБожедомова Елизавета Кирилловна"},
+
+  {cat:"clip", vimeo:"1123895547", year:"2025", title:{ru:"Последний вальс", en:"The Last Waltz"},
+   poster:"https://i.vimeocdn.com/video/2065615721-146e17c2e46f9d6afa19a1145b2d5a24cc9c34b23e76ebe3c2f86133d4f5734e-d_640",
+   info:"Режиссёр - Илья Шпота\n\nВ ролике вместе с главной героиней Катей появляется и Леха, пропавший в финале первого сезона. Фанаты по всей стране продолжают спорить и строить догадки, появится ли он во втором. Но создатели умеют держать интригу: музыкальная сцена снята как сон, где события происходят вне реальности, оставляя вопрос о судьбе Лехи открытым..."},
+
+  {cat:"clip", vimeo:"1169562941", year:"2026", title:{ru:"Nansi & Sidorov — Привет", en:"Nansi & Sidorov — Hello"},
+   poster:"https://i.vimeocdn.com/video/2128361558-1d299ea650b253c88b2713d43b1a9f08ccc8df5a6d5fa991ca630f8690f87e98-d_640",
+   info:"Песня: Привет - Nansi & Sidorov (https://t.me/sidnansi)"}
+];
+
+const T = {
+  ru:{
+    clip:'Клипы', ad:'Реклама', film:'Кино', reel:'Шоурил', about:'О режиссёре',
+    all:'Все работы', prev:'Назад', next:'Далее', load:'Загрузка', awards:'Награды',
+    sub:'Режиссёр, сценарист',
+    lead:'Снимаю то, что сложно снять: <strong>экшн, каскадёров и спецэффекты</strong> — так, чтобы это работало на историю, а не на хронометраж.',
+    bio:[
+      'Режиссёрское образование получил в Столичном колледже в Салониках, где учился у <strong>Йоргоса Лантимоса</strong>.',
+      'Дебютировал в режиссуре с продакшн-компанией <strong>Versus Pictures</strong> Ильи Найшуллера — клипы «Эйфория» и «Боль Слёзы Кровь» для артиста Кассеты, отмеченные наградами.',
+      'Снял самые масштабные клипы в карьере <strong>Басты</strong> для проекта RABOCHIY GORODOK — с топовыми актёрами киноиндустрии и большим объёмом спецэффектов.',
+      'Режиссёр второго сезона сериала <strong>«Ландыши. Вторая весна»</strong> — премьера на СТС, 14 млн зрителей.'
+    ],
+    contact:'Контакты', mail:'Почта', phone:'Телефон',
+    none:'Видео пока недоступно', empty:'Здесь пока пусто'
+  },
+  en:{
+    clip:'Music videos', ad:'Commercials', film:'Films', reel:'Showreel', about:'About',
+    all:'All works', prev:'Prev', next:'Next', load:'Loading', awards:'Awards',
+    sub:'Director, screenwriter',
+    lead:'I shoot what’s hard to shoot: <strong>action, stunts and effects</strong> — built to serve the story, not the running time.',
+    bio:[
+      'Studied directing at Metropolitan College in Thessaloniki, Greece.',
+      'Debuted with <strong>Versus Pictures</strong>, Ilya Naishuller’s company — the award-winning videos “Euphoria” and “Pain Tears Blood” for the artist Kasseta.',
+      'Directed the largest music videos of <strong>Basta’s</strong> career for RABOCHIY GORODOK — leading film actors, heavy visual effects.',
+      'Director of season two of <strong>“Landyshi. Second Spring”</strong> — premiered on STS, 14 million viewers.'
+    ],
+    contact:'Contact', mail:'Email', phone:'Phone',
+    none:'Video not available yet', empty:'Nothing here yet'
+  }
+};
+
+/* ============================================================
+   2. ЛОГИКА
+   ============================================================ */
+const $ = s => document.querySelector(s);
+const view = $('#view');
+let lang = ((navigator.languages && navigator.languages[0]) || navigator.language || '').slice(0,2).toLowerCase() === 'ru' ? 'ru' : 'en';   // язык по браузеру: русский → RU, иначе EN; выбор в шапке и ?lang=ru|en главнее
+try{ const s = localStorage.getItem('lang'); if(s) lang = s; }catch(e){}
+/* ?lang=ru или ?lang=en в адресе всегда главнее (например, редирект с ilyashpota.ru → ...com/?lang=ru) */
+try{ const q = (new URLSearchParams(location.search).get('lang') || '').slice(0,2).toLowerCase(); if(q==='ru' || q==='en'){ lang = q; try{ localStorage.setItem('lang', q); }catch(e){} } }catch(e){}   // slice: терпим хвост вида ?lang=ru/
+/* после чтения параметра убираем «?lang=…» из адресной строки, чтобы ссылка выглядела чисто */
+try{ if(location.search && /[?&]lang=/.test(location.search)) history.replaceState(null,'',location.pathname+location.hash); }catch(e){}
+
+const ROUTES = {
+  '':            {title:null, cat:null},
+  'musicvideos': {title:'clip', cat:'clip'},
+  'commercials': {title:'ad',   cat:'ad'},
+  'films':       {title:'film', cat:'film'},
+  'about':       {title:'about'}
+};
+let route = '';
+const ALIAS = {film:'films'};   // старые ссылки /#/film → /films/
+/* чистые адреса: / · /films/ · /music-videos/ · /commercials/ · /about/ (на каждый — своя папка с index.html, см. tools/build_pages.py) */
+const SLUG = {films:'films', musicvideos:'music-videos', commercials:'commercials', about:'about'};
+const BYSLUG = Object.fromEntries(Object.entries(SLUG).map(([k,v])=>[v,k]));
+const pathFor = k => (k && SLUG[k]) ? '/'+SLUG[k]+'/' : '/';
+function routeFromLocation(){
+  const hh = location.hash;
+  if(hh.length > 1 && /^#\//.test(hh)){            // старая ссылка вида /#/films → переписываем адрес на чистый
+    let n = hh.replace(/^#\/?/,'').split('?')[0]; n = ALIAS[n] || n;
+    if(ROUTES[n] !== undefined){ try{ history.replaceState(null,'',pathFor(n)+location.search); }catch(e){} return n; }
+  }
+  const seg = location.pathname.replace(/\/+$/,'').split('/').pop();
+  return BYSLUG[seg] || (seg && ROUTES[seg] ? seg : '');
+}
+
+const big = (u,w) => (u||'').replace(/-d_\d+/, '-d_'+(w||960));
+const split = s => { const i = s.indexOf(' — '); return i<0 ? ['', s] : [s.slice(0,i), s.slice(i+3)]; };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function tileHTML(w,i){
+  const [a,b] = split(w.title[lang]);
+  return '<a class="tile rv" tabindex="0" role="button" data-i="'+i+'" aria-label="'+esc(w.title[lang])+'">'+
+    '<div class="bg" style="background-image:url(\''+big(w.poster)+'\')"></div>'+
+    '<div class="tt">'+(a?'<small>'+esc(a)+'</small>':'')+esc(b)+'<em>'+w.year+'</em></div></a>';
+}
+
+/* порядок в «Все работы»: кино → клипы → реклама → шоурил */
+function allOrder(){
+  const rank = {film:0, clip:1, ad:2, action:3};
+  return WORKS.map((w,i)=>i).sort((a,b)=>(rank[WORKS[a].cat] ?? 9) - (rank[WORKS[b].cat] ?? 9) || a - b);
+}
+function heroSrc(){
+  const slow = navigator.connection && (navigator.connection.saveData || /2g/.test(navigator.connection.effectiveType||''));
+  return (innerWidth <= 820 || slow) ? 'media/hero-720.mp4' : 'media/hero-1080.mp4';
+}
+function renderHome(){
+  return '<section class="hs" id="hs">'+
+    '<video class="hs-video" id="hsVid" poster="media/hero.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true">'+'<source src="'+heroSrc()+'" type="video/mp4"><source src="media/hero.webm" type="video/webm"></video>'+
+    '<div class="hs-shade"></div>'+
+    '<button class="hs-all" id="hsAll">'+T[lang].all+'</button></section>'+
+    awardsStripHTML()+
+    '<div id="all"><div class="page-title">'+T[lang].all+'</div><div class="tiles">'+allOrder().map(i=>tileHTML(WORKS[i],i)).join('')+'</div></div>';
+}
+
+/* ---------- герой-видео ---------- */
+let popOpen = false, heroIO = null;
+function initHero(){
+  if(heroIO){ heroIO.disconnect(); heroIO = null; }
+  const hs = $('#hs'), v = $('#hsVid'); if(!hs || !v) return;
+  v.muted = true; v.defaultMuted = true;
+  const play = ()=>{ const p = v.play(); if(p && p.catch) p.catch(()=>{}); };
+  play();
+  $('#hsAll').onclick = ()=>$('#all').scrollIntoView({behavior:'smooth'});
+  heroIO = new IntersectionObserver(es=>{ if(es[0].isIntersecting){ if(!popOpen) play(); } else v.pause(); }, {threshold:.05});
+  heroIO.observe(hs);
+}
+document.addEventListener('visibilitychange', ()=>{ const v = $('#hsVid'); if(!v) return; if(document.hidden) v.pause(); else if(!popOpen) v.play().catch(()=>{}); });
+
+/* ---------- шапка поверх слайдера ---------- */
+const headEl = $('#head');
+function updHead(){ headEl.classList.toggle('over', route==='' && scrollY < innerHeight*0.82); }
+addEventListener('scroll', updHead, {passive:true});
+addEventListener('resize', updHead);
+
+
+function renderCat(cat){
+  const idx = WORKS.map((w,i)=>i).filter(i=>WORKS[i].cat===cat);
+  return '<div class="page-title">'+T[lang][cat]+'</div>'+
+    (idx.length ? '<div class="tiles">'+idx.map(i=>tileHTML(WORKS[i],i)).join('')+'</div>' : '<div class="empty">'+T[lang].empty+'</div>');
+}
+function galleryHTML(){
+  const ph = SITE.photos, many = ph.length > 1;
+  return '<div class="galw"><div class="gal" id="gal" tabindex="0" aria-roledescription="carousel" aria-label="'+(lang==='ru'?'Фотографии':'Photos')+'">'+
+    '<div class="gal-track" id="galTrack">'+ph.map(p=>'<img src="'+p.src+'" alt="" draggable="false" style="object-position:'+(p.pos||'50% 30%')+'">').join('')+'</div></div>'+
+    (many ? '<div class="gal-bar"><button class="gal-btn" id="galPrev" aria-label="'+(lang==='ru'?'Назад':'Previous')+'">←</button><span class="gal-count" id="galCount">1 / '+ph.length+'</span><button class="gal-btn" id="galNext" aria-label="'+(lang==='ru'?'Далее':'Next')+'">→</button></div>' : '')+
+  '</div>';
+}
+function initGallery(){
+  const g = $('#gal'), tr = $('#galTrack'); if(!g || !tr) return;
+  const n = tr.children.length, cnt = $('#galCount');
+  const idx = ()=>Math.round(tr.scrollLeft / tr.clientWidth);
+  const to = i=>tr.scrollTo({left: Math.max(0, Math.min(n-1, i)) * tr.clientWidth, behavior:'smooth'});
+  tr.addEventListener('scroll', ()=>{ if(cnt) cnt.textContent = (idx()+1)+' / '+n; }, {passive:true});
+  if($('#galPrev')){ $('#galPrev').onclick = ()=>to(idx()-1); $('#galNext').onclick = ()=>to(idx()+1); }
+  /* перетаскивание мышью (тач и трекпад листаются сами) */
+  let down = false, sx = 0, sl = 0, moved = 0, si = 0;
+  tr.addEventListener('pointerdown', e=>{ if(e.pointerType!=='mouse') return; down = true; moved = 0; sx = e.clientX; sl = tr.scrollLeft; si = idx(); tr.style.scrollSnapType = 'none'; tr.style.cursor = 'grabbing'; tr.setPointerCapture(e.pointerId); });
+  tr.addEventListener('pointermove', e=>{ if(!down) return; moved = e.clientX - sx; tr.scrollLeft = sl - moved; });
+  const end = ()=>{ if(!down) return; down = false; tr.style.cursor = ''; const w = tr.clientWidth; let target = si; if(moved < -w*.15) target = si+1; else if(moved > w*.15) target = si-1; target = Math.max(0, Math.min(n-1, target)); tr.style.scrollSnapType = ''; tr.scrollTo({left: target*tr.clientWidth, behavior:'smooth'}); };
+  tr.addEventListener('pointerup', end); tr.addEventListener('pointercancel', end);
+  g.addEventListener('keydown', e=>{ if(e.key==='ArrowRight'){ e.preventDefault(); to(idx()+1); } if(e.key==='ArrowLeft'){ e.preventDefault(); to(idx()-1); } });
+}
+function awardsHTML(){
+  const a = SITE.awards; if(!a || !a.length) return '';
+  return '<section class="awards"><h3>'+T[lang].awards+'</h3><div class="awards-row">'+
+    a.map(x=>'<img'+(x.wide?' class="wide"':'')+' src="'+x.src+'" alt="'+esc(x.alt)+'" loading="lazy">').join('')+'</div></section>';
+}
+function awardsStripHTML(){
+  const a = (SITE.awards||[]).filter(x=>x.home).sort((p,q)=>p.home-q.home); if(!a.length) return '';
+  return '<section class="awards-strip" aria-label="'+T[lang].awards+'">'+a.map(x=>'<img'+(x.wide?' class="wide"':'')+' src="'+x.src+'" alt="'+esc(x.alt)+'" loading="lazy">').join('')+'</section>';
+}
+function renderAbout(){
+  const t = T[lang];
+  const photo = SITE.photos && SITE.photos.length ? galleryHTML() : '';
+  return '<div class="about'+(photo?'':' nophoto')+'">'+photo+'<div class="tx">'+
+    '<p class="lead">'+t.lead+'</p>'+t.bio.map(p=>'<p>'+p+'</p>').join('')+
+    '<h3>'+t.contact+'</h3><ul class="cont">'+
+      '<li><span>'+t.mail+'</span><a href="mailto:'+SITE.email+'">'+SITE.email+'</a></li>'+
+      '<li><span>'+t.phone+'</span><a href="tel:'+SITE.phone.replace(/[^+\d]/g,'')+'">'+SITE.phone+'</a></li>'+
+      SITE.links.map(l=>'<li><span>'+l.label+'</span><a href="'+l.url+'" target="_blank" rel="noopener">'+l.url.replace(/^https?:\/\/(www\.)?/,'')+'</a></li>').join('')+
+    '</ul></div></div>'+awardsHTML();
+}
+
+let io;
+function observe(){
+  if(io) io.disconnect();
+  io = new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('in'),(e.target.dataset.i%2)*90); io.unobserve(e.target); } });
+  },{rootMargin:'0px 0px -6% 0px'});
+  view.querySelectorAll('.tile').forEach(t=>io.observe(t));
+}
+
+function paint(){
+  const r = ROUTES[route] || ROUTES[''];
+  view.innerHTML = route==='about' ? renderAbout() : (r.cat ? renderCat(r.cat) : renderHome());
+  observe();
+  initHero(); initGallery(); updHead();
+  document.title = (r.title ? T[lang][r.title]+' — ' : '') + (lang==='ru' ? 'Илья Шпота' : 'Ilya Shpota');
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i]').forEach(el=>{ if(!el.classList.contains('tile')) el.textContent = T[lang][el.dataset.i]; });
+  document.querySelectorAll('.menu a[data-r]').forEach(a=>a.classList.toggle('on', a.dataset.r===route));
+  $('#role').textContent = T[lang].sub;
+  $('#logo').textContent = lang==='ru' ? 'Илья Шпота' : 'Ilya Shpota';
+  $('#ru').setAttribute('aria-pressed', lang==='ru');
+  $('#en').setAttribute('aria-pressed', lang==='en');
+  $('#foot').innerHTML = SITE.links.map(l=>'<li><a href="'+l.url+'" target="_blank" rel="noopener">'+l.label+'</a></li>').join('');
+}
+
+function go(){
+  route = routeFromLocation();
+  closeMenu();
+  view.classList.add('fade');
+  setTimeout(()=>{ paint(); scrollTo(0,0); view.classList.remove('fade'); }, 200);
+}
+addEventListener('popstate', go);
+/* клики по ссылкам меню — без перезагрузки страницы, но с чистым адресом */
+document.addEventListener('click', e=>{
+  const a = e.target.closest('a[data-nav]'); if(!a) return;
+  if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;   // «открыть в новой вкладке» работает как обычно
+  e.preventDefault(); closeMenu();
+  const url = a.getAttribute('href');
+  if(url === location.pathname){ scrollTo({top:0,behavior:'smooth'}); return; }
+  history.pushState(null,'',url); go();
+});
+
+/* ---------- меню ---------- */
+const menu = $('#menu'), burger = $('#burger');
+function closeMenu(){ menu.classList.remove('open'); burger.classList.remove('x'); burger.setAttribute('aria-expanded','false'); }
+burger.onclick = ()=>{ const o = menu.classList.toggle('open'); burger.classList.toggle('x', o); burger.setAttribute('aria-expanded', o); };
+
+/* ---------- язык ---------- */
+function setLang(l){ lang = l; try{ localStorage.setItem('lang', l); }catch(e){} paint(); closeMenu(); }
+$('#ru').onclick = ()=>setLang('ru');
+$('#en').onclick = ()=>setLang('en');
+
+/* ---------- попап ---------- */
+const pop = $('#pop'), vid = $('#vid'), cap = $('#cap');
+function openPop(i){
+  const w = WORKS[i];
+  vid.innerHTML = w.vimeo
+    ? '<iframe src="https://player.vimeo.com/video/'+w.vimeo+'?autoplay=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'
+    : '<div class="none">'+T[lang].none+'</div>';
+  const catName = {clip:T[lang].clip, ad:T[lang].ad, film:T[lang].film, action:T[lang].reel}[w.cat] || '';
+  cap.innerHTML = '<div class="m">'+catName+(w.year?' · '+w.year:'')+'</div><div class="t">'+esc(w.title[lang])+'</div>'+(w.info?'<div class="i">'+esc(w.info)+'</div>':'');
+  pop.classList.add('on'); document.body.style.overflow='hidden'; popOpen = true; { const v = $('#hsVid'); if(v) v.pause(); }
+}
+function closePop(){ pop.classList.remove('on'); vid.innerHTML=''; cap.innerHTML=''; document.body.style.overflow=''; popOpen = false; { const v = $('#hsVid'); if(v && route==='' && scrollY < innerHeight) v.play().catch(()=>{}); } }
+$('#popx').onclick = closePop;
+pop.onclick = e=>{ if(e.target===pop) closePop(); };
+addEventListener('keydown', e=>{ if(e.key==='Escape') closePop(); if((e.key==='Enter'||e.key===' ') && e.target.classList && e.target.classList.contains('tile')){ e.preventDefault(); e.target.click(); } });
+view.addEventListener('click', e=>{ const t = e.target.closest('.tile'); if(t) openPop(+t.dataset.i); });
+$('#reelBtn').onclick = ()=>{ const i = WORKS.findIndex(w=>w.cat==='action'); if(i>-1) openPop(i); closeMenu(); };
+
+/* ---------- старт ---------- */
+(function(){
+  route = routeFromLocation();
+  paint();
+})();
+</script>
+</body>
+</html>
