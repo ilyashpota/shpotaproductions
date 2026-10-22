@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -364,7 +364,7 @@ const T = {
    ============================================================ */
 const $ = s => document.querySelector(s);
 const view = $('#view');
-let lang = 'ru';   // по умолчанию русская версия; выбор EN запоминается в браузере
+let lang = 'en';   // по умолчанию английская версия (ilyashpota.com); русская — через ilyashpota.ru или ?lang=ru; выбор языка запоминается в браузере
 try{ const s = localStorage.getItem('lang'); if(s) lang = s; }catch(e){}
 /* ?lang=ru или ?lang=en в адресе всегда главнее (например, редирект с ilyashpota.ru → ...com/?lang=ru) */
 try{ const q = (new URLSearchParams(location.search).get('lang') || '').slice(0,2).toLowerCase(); if(q==='ru' || q==='en'){ lang = q; try{ localStorage.setItem('lang', q); }catch(e){} } }catch(e){}   // slice: терпим хвост вида ?lang=ru/
